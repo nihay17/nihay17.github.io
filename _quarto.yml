@@ -5,23 +5,23 @@ website:
   title: "Niha Yadav"
   navbar:
     right:
-      - href: index.html
+      - href: index.qmd
         text: Home
       - text: Knowledge Mining
         menu:
-        - href: assignment1-km.html
+        - href: assignment1-km.qmd
           text: Assignment 1
-        - href: assignment2-km.html
+        - href: assignment2-km.qmd
           text: Assignment 2
-        - href: assignment3-km.html
+        - href: assignment3-km.qmd
           text: Assignment 3
       - text: Information Management
         menu:
-        - href: assignment1-im.html
+        - href: assignment1-im.qmd
           text: Assignment 1
-        - href: assignment2-im.html
+        - href: assignment2-im.qmd
           text: Assignment 2
-        - href: assignment3-im.html
+        - href: assignment3-im.qmd
           text: Assignment 3
 
 format:
