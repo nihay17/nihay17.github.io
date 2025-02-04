@@ -3,8 +3,6 @@ title: "Assignment 1 - Comparing Modeling Approaches"
 format: html
 ---
 
-# Comparing Modeling Approaches
-
 ## **To Explain or to Predict? - Galit Shmueli** {#shmueli}
 
 The journal article "To Explain or to Predict?" by Galit Shmueli clarifies the distinction between explanatory modeling and predictive modeling, emphasizing their different goals and implications.
