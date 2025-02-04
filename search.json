@@ -4,6 +4,34 @@
     "href": "index.html",
     "title": "Niha Yadav",
     "section": "",
-    "text": "I am a masters’ student studying social data analytics and research at The University of Texas at Dallas.\nContact me:\nniha.yadav@utdallas.edu Website"
+    "text": "I am a masters’ student studying social data analytics and research at The University of Texas at Dallas.\nHere is my resume:\n\nContact me:\nniha.yadav@utdallas.edu Website"
+  },
+  {
+    "objectID": "assignment1-km.html",
+    "href": "assignment1-km.html",
+    "title": "Assignment 1 - Comparing Modeling Approaches",
+    "section": "",
+    "text": "The journal article “To Explain or to Predict?” by Galit Shmueli clarifies the distinction between explanatory modeling and predictive modeling, emphasizing their different goals and implications.\n\n\n\nExplanatory modeling aims to understand causal relationships.\n\nPredictive modeling focuses on forecasting future observations.\n\nHigh explanatory power ≠ High predictive power.\n\nResearchers should clearly define their modeling objective before choosing an approach."
+  },
+  {
+    "objectID": "assignment1-km.html#shmueli",
+    "href": "assignment1-km.html#shmueli",
+    "title": "Assignment 1 - Comparing Modeling Approaches",
+    "section": "",
+    "text": "The journal article “To Explain or to Predict?” by Galit Shmueli clarifies the distinction between explanatory modeling and predictive modeling, emphasizing their different goals and implications.\n\n\n\nExplanatory modeling aims to understand causal relationships.\n\nPredictive modeling focuses on forecasting future observations.\n\nHigh explanatory power ≠ High predictive power.\n\nResearchers should clearly define their modeling objective before choosing an approach."
+  },
+  {
+    "objectID": "assignment1-km.html#breiman",
+    "href": "assignment1-km.html#breiman",
+    "title": "Assignment 1 - Comparing Modeling Approaches",
+    "section": "2 Statistical Modeling: The Two Cultures - Leo Breiman",
+    "text": "2 Statistical Modeling: The Two Cultures - Leo Breiman\nThe article “Statistical Modeling: The Two Cultures” by Leo Breiman critiques the over-reliance on data modeling within traditional statistics and argues for greater use of algorithmic modeling (e.g., machine learning).\n\n2.1 Key Points:\n\nData modeling (parametric models, like regression) dominates traditional statistics.\n\nAlgorithmic modeling (machine learning, decision trees, random forests) is often better for prediction.\n\nWith the rise of large datasets, statisticians should broaden their methods.\n\nBreiman calls for a more flexible and diverse statistical toolbox."
+  },
+  {
+    "objectID": "assignment1-km.html#comparison",
+    "href": "assignment1-km.html#comparison",
+    "title": "Assignment 1 - Comparing Modeling Approaches",
+    "section": "3 Comparison & Conclusion",
+    "text": "3 Comparison & Conclusion\nBoth papers highlight the importance of choosing the right modeling approach based on research goals.\n\n\n\n\n\n\n\n\nFeature\nShmueli (2010) - Explanation vs. Prediction\nBreiman (2001) - Two Cultures\n\n\n\n\nFocus\nDifferentiating explanatory & predictive modeling\nAdvocating for algorithmic modeling over parametric methods\n\n\nKey Argument\nModels should align with the research goal\nStatistics should embrace machine learning\n\n\nImpact\nGuides researchers in study design & model selection\nPushed for machine learning adoption in statistics\n\n\n\n\n3.1 Final Thoughts\n\nShmueli (2010) is crucial for researchers to decide between explanation vs. prediction.\n\nBreiman (2001) challenges traditional statistics to embrace algorithmic modeling.\n\nBoth papers shape modern discussions in data science and statistical modeling."
   }
 ]
