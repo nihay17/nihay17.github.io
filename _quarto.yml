@@ -1,0 +1,40 @@
+project:
+  type: website
+
+website:
+  title: "Niha Yadav"
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - text: Knowledge Mining
+        menu:
+        - href: assignment1-km.qmd
+          text: Assignment 1
+        - href: assignment2-km.qmd
+          text: Assignment 2
+        - href: assignment3-km.qmd
+          text: Assignment 3
+      - text: Information Management
+        menu:
+        - href: assignment1-im.qmd
+          text: Assignment 1
+        - href: assignment2-im.qmd
+          text: Assignment 2
+        - href: assignment3-im.qmd
+          text: Assignment 3
+
+format:
+  html:
+    theme:
+      - simplex
+      - brand
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Show R Code"
+
+editor: visual
+

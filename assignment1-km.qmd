@@ -1,0 +1,48 @@
+---
+title: "Assignment 1 - Comparing Modeling Approaches"
+format: html
+---
+
+# Comparing Modeling Approaches
+
+## **To Explain or to Predict? - Galit Shmueli** {#shmueli}
+
+The journal article "To Explain or to Predict?" by Galit Shmueli clarifies the distinction between explanatory modeling and predictive modeling, emphasizing their different goals and implications.
+
+### **Key Points:**
+
+-   Explanatory modeling aims to understand causal relationships.\
+-   Predictive modeling focuses on forecasting future observations.\
+-   High explanatory power ≠ High predictive power.\
+-   Researchers should clearly define their modeling objective before choosing an approach.
+
+------------------------------------------------------------------------
+
+## **Statistical Modeling: The Two Cultures - Leo Breiman** {#breiman}
+
+The article "Statistical Modeling: The Two Cultures" by Leo Breiman critiques the over-reliance on data modeling within traditional statistics and argues for greater use of algorithmic modeling (e.g., machine learning).
+
+### **Key Points:**
+
+-   Data modeling (parametric models, like regression) dominates traditional statistics.\
+-   Algorithmic modeling (machine learning, decision trees, random forests) is often better for prediction.\
+-   With the rise of large datasets, statisticians should broaden their methods.\
+-   Breiman calls for a more flexible and diverse statistical toolbox.
+
+------------------------------------------------------------------------
+
+## **Comparison & Conclusion** {#comparison}
+
+Both papers highlight the importance of choosing the right modeling approach based on research goals.
+
+| Feature | Shmueli (2010) - Explanation vs. Prediction | Breiman (2001) - Two Cultures |
+|-------------------|---------------------------|--------------------------|
+| Focus | Differentiating explanatory & predictive modeling | Advocating for algorithmic modeling over parametric methods |
+| Key Argument | Models should align with the research goal | Statistics should embrace machine learning |
+| Impact | Guides researchers in study design & model selection | Pushed for machine learning adoption in statistics |
+
+### **Final Thoughts**
+
+-   Shmueli (2010) is crucial for researchers to decide between explanation vs. prediction.\
+-   Breiman (2001) challenges traditional statistics to embrace algorithmic modeling.\
+-   Both papers shape modern discussions in data science and statistical modeling.
