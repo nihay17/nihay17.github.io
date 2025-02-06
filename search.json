@@ -33,5 +33,47 @@
     "title": "Assignment 1 - Comparing Modeling Approaches",
     "section": "3 Comparison & Conclusion",
     "text": "3 Comparison & Conclusion\nBoth papers highlight the importance of choosing the right modeling approach based on research goals.\n\n\n\n\n\n\n\n\nFeature\nShmueli (2010) - Explanation vs. Prediction\nBreiman (2001) - Two Cultures\n\n\n\n\nFocus\nDifferentiating explanatory & predictive modeling\nAdvocating for algorithmic modeling over parametric methods\n\n\nKey Argument\nModels should align with the research goal\nStatistics should embrace machine learning\n\n\nImpact\nGuides researchers in study design & model selection\nPushed for machine learning adoption in statistics\n\n\n\n\n3.1 Final Thoughts\n\nShmueli (2010) is crucial for researchers to decide between explanation vs. prediction.\n\nBreiman (2001) challenges traditional statistics to embrace algorithmic modeling.\n\nBoth papers shape modern discussions in data science and statistical modeling."
+  },
+  {
+    "objectID": "assignment1-im.html",
+    "href": "assignment1-im.html",
+    "title": "Assignment 1 - Information Management",
+    "section": "",
+    "text": "Question 1\n\nQuestion 2\n\nQuestion 3\n\nQuestion 6"
+  },
+  {
+    "objectID": "assignment1-im.html#navigation",
+    "href": "assignment1-im.html#navigation",
+    "title": "Assignment 1 - Information Management",
+    "section": "",
+    "text": "Question 1\n\nQuestion 2\n\nQuestion 3\n\nQuestion 6"
+  },
+  {
+    "objectID": "assignment1-im.html#question1",
+    "href": "assignment1-im.html#question1",
+    "title": "Assignment 1 - Information Management",
+    "section": "2 Question 1: University Systems",
+    "text": "2 Question 1: University Systems\n\n2.1 University System (Student Information System)\nPurpose: Manages and maintains student information.\nFunctions:\n- Course Registration\n- Academic Records\n- Personal Information\n- Financial Information\nExample: UT Dallas uses Oracle PeopleSoft Campus Solutions\n\n\n2.2 Online Learning Platform (Learning Management System)\nPurpose: Facilitates electronic learning and communication.\nFunctions:\n- Courses\n- Grades\n- Calendar\n- Communication\nExample: UT Dallas uses Blackboard’s e-learning\n\n\n2.3 Online Banking System (Financial System)\nPurpose: Offers financial management and access to banking systems.\nFunctions:\n- Money Transfer\n- Security\n- Mobile Banking\n- Account Management\nExample: Bank of America Online Banking"
+  },
+  {
+    "objectID": "assignment1-im.html#question2",
+    "href": "assignment1-im.html#question2",
+    "title": "Assignment 1 - Information Management",
+    "section": "3 Question 2: Data-Driven Platforms",
+    "text": "3 Question 2: Data-Driven Platforms\n\n3.1 Criminology: Crime Data Analysis Platform\nPurpose: Analyze and visualize crime data, helping law enforcement agencies identify crime patterns and improve public safety.\nFunctions:\nData Visualization (heatmaps, trends).\nPredictive Analytics (future crime occurrences).\nReporting (crime statistics reports).\nCollaboration (data sharing, inter-agency tools).\nSimple Interface Design:\n- Dashboard: Key crime metrics, maps, trend charts.\n- Analysis Tools: Filtering data by crime type, location, and time.\n- Reports: Generate and export reports.\n- Collaboration: Chat and document sharing.\n\n\n\n3.2 Brain Science: Cognitive Training App\nPurpose: Provide cognitive training exercises and assessments to track cognitive health.\nFunctions:\nTraining Programs (memory, problem-solving).\nProgress Tracking (performance feedback).\nAssessments (evaluate brain function).\nReminders (daily training sessions).\nSimple Interface Design:\n- Home Screen: Dashboard with progress charts.\n- Training Exercises: Personalized cognitive tasks.\n- Assessments: Cognitive evaluations and reports.\n- Reminders: Notifications for training sessions.\n\n\n\n3.3 Economics: Personal Finance Management App\nPurpose: Help individuals manage personal finances, track expenses, and plan future goals.\nFunctions:\nBudgeting (set budgets, track spending).\nFinancial Goals (saving, debt payoff).\nExpense Categorization (spending patterns).\nReports (financial visualizations).\nSimple Interface Design:\n- Home Screen: Budget status, spending summary.\n- Expense Tracker: Add and categorize expenses.\n- Financial Goals: Set and monitor savings progress.\n- Reports: Charts to visualize financial health."
+  },
+  {
+    "objectID": "assignment1-im.html#question3",
+    "href": "assignment1-im.html#question3",
+    "title": "Assignment 1 - Information Management",
+    "section": "4 Question 3: Importance of Data Mining",
+    "text": "4 Question 3: Importance of Data Mining\nWhy is data mining necessary?\n✔ Discovering hidden patterns in data.\n✔ Predicting future trends.\n✔ Improving decision-making.\n✔ Enhancing efficiency.\n✔ Personalizing user experiences."
+  },
+  {
+    "objectID": "assignment1-im.html#question6",
+    "href": "assignment1-im.html#question6",
+    "title": "Assignment 1 - Information Management",
+    "section": "5 Question 6: Example Tables (Users, Posts, Comments)",
+    "text": "5 Question 6: Example Tables (Users, Posts, Comments)\nBelow are three database tables used in a typical social media system:\n\n\nShow R Code\n# Users table\nusers_table &lt;- data.frame(\n  user_id = 1:5,\n  username = c(\"john_doe\", \"alice_wonder\", \"bob_smith\", \"carol_jones\", \"eve_wood\"),\n  email = c(\"john@example.com\", \"alice@example.com\", \"bob@example.com\", \"carol@example.com\", \"eve@example.com\"),\n  created_at = Sys.time() - sample(1:1000, 5),\n  updated_at = Sys.time()\n)\n# Display the table\nusers_table\n\n\n  user_id     username             email          created_at\n1       1     john_doe  john@example.com 2025-02-06 13:06:18\n2       2 alice_wonder alice@example.com 2025-02-06 13:11:50\n3       3    bob_smith   bob@example.com 2025-02-06 13:14:24\n4       4  carol_jones carol@example.com 2025-02-06 13:17:28\n5       5     eve_wood   eve@example.com 2025-02-06 13:16:10\n           updated_at\n1 2025-02-06 13:17:38\n2 2025-02-06 13:17:38\n3 2025-02-06 13:17:38\n4 2025-02-06 13:17:38\n5 2025-02-06 13:17:38\n\n\n\n\nShow R Code\n# Posts table\nposts_table &lt;- data.frame(\n  post_id = 1:5,\n  user_id = c(1, 2, 1, 3, 4),\n  content = c(\"First post\", \"Second post\", \"Another post\", \"Interesting post\", \"Final post\"),\n  created_at = Sys.time() - sample(1:1000, 5),\n  updated_at = Sys.time(),\n  likes_count = c(10, 5, 8, 2, 7),\n  comments_count = c(2, 1, 4, 0, 3),\n  shared_count = c(3, 1, 2, 0, 1)\n)\n# Display the table\nposts_table\n\n\n  post_id user_id          content          created_at          updated_at\n1       1       1       First post 2025-02-06 13:14:35 2025-02-06 13:17:38\n2       2       2      Second post 2025-02-06 13:12:21 2025-02-06 13:17:38\n3       3       1     Another post 2025-02-06 13:11:23 2025-02-06 13:17:38\n4       4       3 Interesting post 2025-02-06 13:03:57 2025-02-06 13:17:38\n5       5       4       Final post 2025-02-06 13:10:26 2025-02-06 13:17:38\n  likes_count comments_count shared_count\n1          10              2            3\n2           5              1            1\n3           8              4            2\n4           2              0            0\n5           7              3            1\n\n\n\n\nShow R Code\n# Comments table\ncomments_table &lt;- data.frame(\n  comment_id = 1:5,\n  post_id = c(1, 1, 2, 3, 4),\n  user_id = c(2, 3, 1, 4, 5),\n  content = c(\"Great post!\", \"Interesting!\", \"Thanks for sharing!\", \"Nice!\", \"I agree!\"),\n  created_at = Sys.time() - sample(1:1000, 5),\n  updated_at = Sys.time(),\n  likes_count = c(5, 2, 3, 1, 4)\n)\n# Display the table\ncomments_table\n\n\n  comment_id post_id user_id             content          created_at\n1          1       1       2         Great post! 2025-02-06 13:10:28\n2          2       1       3        Interesting! 2025-02-06 13:05:05\n3          3       2       1 Thanks for sharing! 2025-02-06 13:05:21\n4          4       3       4               Nice! 2025-02-06 13:02:49\n5          5       4       5            I agree! 2025-02-06 13:06:42\n           updated_at likes_count\n1 2025-02-06 13:17:39           5\n2 2025-02-06 13:17:39           2\n3 2025-02-06 13:17:39           3\n4 2025-02-06 13:17:39           1\n5 2025-02-06 13:17:39           4"
   }
 ]

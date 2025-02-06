@@ -1,5 +1,162 @@
 ---
-title: "assignment1-im"
-format: html
+title: "Assignment 1 - Information Management"
+author: "Niha Yadav"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Show R Code"
 ---
 
+
+## **🔗 Navigation**
+-  [Question 1](#question1)  
+-  [Question 2](#question2)  
+-  [Question 3](#question3)  
+-  [Question 6](#question6)  
+
+---
+
+## **Question 1: University Systems** {#question1}
+
+### **University System (Student Information System)**  
+**Purpose:** Manages and maintains student information.  
+**Functions:**  
+- Course Registration  
+- Academic Records  
+- Personal Information  
+- Financial Information  
+Example: UT Dallas uses Oracle PeopleSoft Campus Solutions 
+
+### **Online Learning Platform (Learning Management System)**  
+**Purpose:** Facilitates electronic learning and communication.  
+**Functions:**  
+- Courses  
+- Grades  
+- Calendar  
+- Communication  
+Example: UT Dallas uses Blackboard's e-learning  
+
+### **Online Banking System (Financial System)**  
+**Purpose:** Offers financial management and access to banking systems.  
+**Functions:**  
+- Money Transfer  
+- Security  
+- Mobile Banking  
+- Account Management  
+Example: Bank of America Online Banking  
+
+---
+
+## **Question 2: Data-Driven Platforms** {#question2}
+
+### **Criminology: Crime Data Analysis Platform**  
+**Purpose:** Analyze and visualize crime data, helping law enforcement agencies identify crime patterns and improve public safety.  
+**Functions:**  
+  Data Visualization (heatmaps, trends).  
+  Predictive Analytics (future crime occurrences).  
+  Reporting (crime statistics reports).  
+  Collaboration (data sharing, inter-agency tools).  
+
+**Simple Interface Design:**  
+- Dashboard: Key crime metrics, maps, trend charts.  
+- Analysis Tools: Filtering data by crime type, location, and time.  
+- Reports: Generate and export reports.  
+- Collaboration: Chat and document sharing.  
+
+---
+
+### **Brain Science: Cognitive Training App**  
+**Purpose:** Provide cognitive training exercises and assessments to track cognitive health.  
+**Functions:**  
+  Training Programs (memory, problem-solving).  
+  Progress Tracking (performance feedback).  
+  Assessments (evaluate brain function).  
+  Reminders (daily training sessions).  
+
+**Simple Interface Design:**  
+- Home Screen: Dashboard with progress charts.  
+- Training Exercises: Personalized cognitive tasks.  
+- Assessments: Cognitive evaluations and reports.  
+- Reminders: Notifications for training sessions.  
+
+---
+
+### **Economics: Personal Finance Management App**  
+**Purpose:** Help individuals manage personal finances, track expenses, and plan future goals.  
+**Functions:**  
+  Budgeting (set budgets, track spending).  
+  Financial Goals (saving, debt payoff).  
+  Expense Categorization (spending patterns).  
+  Reports (financial visualizations).  
+
+**Simple Interface Design:**  
+- Home Screen: Budget status, spending summary.  
+- Expense Tracker: Add and categorize expenses.  
+- Financial Goals: Set and monitor savings progress.  
+- Reports: Charts to visualize financial health.  
+
+---
+
+## **Question 3: Importance of Data Mining** {#question3}
+
+**Why is data mining necessary?**  
+✔ Discovering hidden patterns in data.  
+✔ Predicting future trends.  
+✔ Improving decision-making.  
+✔ Enhancing efficiency.  
+✔ Personalizing user experiences.  
+
+---
+
+## **Question 6: Example Tables (Users, Posts, Comments)** {#question6}
+
+Below are three database tables used in a typical social media system:  
+
+```{r}
+# Users table
+users_table <- data.frame(
+  user_id = 1:5,
+  username = c("john_doe", "alice_wonder", "bob_smith", "carol_jones", "eve_wood"),
+  email = c("john@example.com", "alice@example.com", "bob@example.com", "carol@example.com", "eve@example.com"),
+  created_at = Sys.time() - sample(1:1000, 5),
+  updated_at = Sys.time()
+)
+# Display the table
+users_table
+```
+
+
+```{r}
+# Posts table
+posts_table <- data.frame(
+  post_id = 1:5,
+  user_id = c(1, 2, 1, 3, 4),
+  content = c("First post", "Second post", "Another post", "Interesting post", "Final post"),
+  created_at = Sys.time() - sample(1:1000, 5),
+  updated_at = Sys.time(),
+  likes_count = c(10, 5, 8, 2, 7),
+  comments_count = c(2, 1, 4, 0, 3),
+  shared_count = c(3, 1, 2, 0, 1)
+)
+# Display the table
+posts_table
+```
+
+
+```{r}
+# Comments table
+comments_table <- data.frame(
+  comment_id = 1:5,
+  post_id = c(1, 1, 2, 3, 4),
+  user_id = c(2, 3, 1, 4, 5),
+  content = c("Great post!", "Interesting!", "Thanks for sharing!", "Nice!", "I agree!"),
+  created_at = Sys.time() - sample(1:1000, 5),
+  updated_at = Sys.time(),
+  likes_count = c(5, 2, 3, 1, 4)
+)
+# Display the table
+comments_table
+```
