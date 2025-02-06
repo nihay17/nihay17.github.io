@@ -4,10 +4,6 @@ title: "Niha Yadav"
 
 I am a masters' student studying social data analytics and research at The University of Texas at Dallas.
 
-Here is my resume:
-
-<embed src="2024 Resume.pdf" type="application/pdf" width="100%" height="600px"/>
-
 Contact me:
 
 [niha.yadav\@utdallas.edu](mailto:niha.yadav@utdallas.edu) [Website](https:\nihay17.github.io)
