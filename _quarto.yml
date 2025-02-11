@@ -14,12 +14,8 @@ website:
         menu:
         - href: assignment1-km.qmd
           text: Assignment 1
-        - text: Assignment 2
-          menu:
-          - href: Lab01.qmd
-            text: Lab 1
-          - href: Lab02.qmd
-            text: Lab 2
+        - href: assignment2-km.qmd
+          text: Assignment 2
         - href: assignment3-km.qmd
           text: Assignment 3
       - text: Information Management

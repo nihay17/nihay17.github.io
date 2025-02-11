@@ -1,6 +1,9 @@
 ---
-title: "assignment2-km"
+title: "Assignment2-Knowledge Mining"
 format: html
 ---
 
 
+ **Labs for this Assignment**  
+-[Lab 1](Lab01.html)  
+-[Lab 2](Lab02.html)  
