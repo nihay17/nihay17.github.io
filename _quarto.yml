@@ -17,9 +17,9 @@ website:
         - href: assignment2-km.qmd
           text: Assignment 2
           menu:
-          - href: lab01.qmd
+          - href: Lab01.qmd
             text: Lab 1
-          - href: lab02.qmd
+          - href: Lab02.qmd
             text: Lab 2
         - href: assignment3-km.qmd
           text: Assignment 3
