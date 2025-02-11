@@ -6,4 +6,60 @@ format: html
 
  **Labs for this Assignment**  
 -[Lab 1](Lab01.html)  
--[Lab 2](Lab02.html)  
+-[Lab 2](Lab02.html) 
+
+3-7 
+```{r}
+library(haven)
+TEDS_2016 <- read_stata("https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true")
+
+# Prepare the analyze the Party ID variable 
+# Assign label to the values (1=KMT, 2=DPP, 3=NP, 4=PFP, 5=TSU, 6=NPP, 7="NA")
+
+TEDS_2016$PartyID <- factor(TEDS_2016$PartyID, labels=c("KMT","DPP","NP","PFP", "TSU", "NPP","NA"))
+```
+
+```{r}
+attach(TEDS_2016)
+head(PartyID)
+tail(PartyID)
+```
+
+```{r}
+library(descr)
+freq(TEDS_2016$PartyID)
+```
+
+```{r}
+library(tidyverse)
+TEDS_2016 %>% 
+  count(PartyID) %>% 
+  mutate(perc = n / nrow(TEDS_2016)) -> T2
+ggplot(T2, aes(x = reorder(PartyID, -perc),y = perc,fill=PartyID)) + 
+  geom_bar(stat = "identity") +
+  ylab("Party Support (%)") + 
+  xlab("Taiwan Political Parties") +
+  theme_bw() +
+  scale_fill_manual(values=c("steel blue","forestgreen","khaki1","orange","goldenrod","yellow","grey"))
+```
+
+```{r}
+TEDS_2016$Tondu<-factor(TEDS_2016$Tondu,labels=c("Unification now","Status quo, unif. in future","Status quo, decide later","Status quo forever", "Status quo, indep. in future", "Independence now","No response"))
+
+
+freq_table <- table(TEDS_2016$Tondu)
+print(freq_table)  # Display the frequency table
+
+library(ggplot2)
+ggplot(data = as.data.frame(freq_table), aes(x = Var1, y = Freq)) +
+  geom_bar(stat="identity", fill="steelblue") +
+  labs(title="Public Opinion on Taiwan's Status (TEDS 2016)", 
+       x="Opinion", y="Frequency") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for readability
+
+
+```
+
+
+
