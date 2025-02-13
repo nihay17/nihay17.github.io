@@ -1,4 +1,100 @@
 ---
-title: "assignment2-im"
+title: "Assignment 2-IM"
 format: html
+editor: visual
 ---
+
+1. 
+A relation schema is the structure or blueprint of a table, defining column names and data types. An example would be: Students(student_id, name, major, age). 
+A relation is the actual table itself, including column names and all stored records. An example would be a table named Students, which has all of the student data. 
+The instance is the current snapshot of data in a table at a given time. An example would be a specific set of student records at a moment in time. 
+
+2.
+```{r}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+
+# Create the diagram and store it in a variable
+diagram <- grViz("
+  digraph bank_database {
+    graph [layout = dot, rankdir = LR]
+
+    node [shape = plaintext]
+
+    branch [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Branch</B></TD></TR>
+        <TR><TD><U>branch_name (PK)</U></TD></TR>
+        <TR><TD>branch_city</TD></TR>
+        <TR><TD>assets</TD></TR>
+      </TABLE>>]
+
+    customer [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Customer</B></TD></TR>
+        <TR><TD><U>ID (PK)</U></TD></TR>
+        <TR><TD>customer_name</TD></TR>
+        <TR><TD>customer_street</TD></TR>
+        <TR><TD>customer_city</TD></TR>
+      </TABLE>>]
+
+    loan [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Loan</B></TD></TR>
+        <TR><TD><U>loan_number (PK)</U></TD></TR>
+        <TR><TD>branch_name (FK)</TD></TR>
+        <TR><TD>amount</TD></TR>
+      </TABLE>>]
+
+    borrower [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Borrower</B></TD></TR>
+        <TR><TD>ID (FK)</TD></TR>
+        <TR><TD>loan_number (FK)</TD></TR>
+      </TABLE>>]
+
+    account [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Account</B></TD></TR>
+        <TR><TD><U>account_number (PK)</U></TD></TR>
+        <TR><TD>branch_name (FK)</TD></TR>
+        <TR><TD>balance</TD></TR>
+      </TABLE>>]
+
+    depositor [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Depositor</B></TD></TR>
+        <TR><TD>ID (FK)</TD></TR>
+        <TR><TD>account_number (FK)</TD></TR>
+      </TABLE>>]
+
+    # Define relationships
+    branch -> loan [label = 'has loans']
+    branch -> account [label = 'holds accounts']
+    customer -> borrower [label = 'borrows']
+    customer -> depositor [label = 'deposits']
+    loan -> borrower [label = 'is borrowed']
+    account -> depositor [label = 'is linked']
+  }
+")
+
+# Convert DiagrammeR graph to SVG format
+svg_code <- export_svg(diagram)
+
+# Save as an SVG file
+writeLines(svg_code, "bank_schema.svg")
+
+# Convert SVG to PNG
+rsvg_png("bank_schema.svg", "bank_schema.png")
+
+```
+![Bank Database Schema](bank_schema.png)
+
+3.
+Loan - branch_name
+Borrower- ID & loan_number
+Account- branch_name
+Depositor- account_number & ID
+
+

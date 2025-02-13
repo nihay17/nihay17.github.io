@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>assignment2-im – Niha Yadav</title>
+<title>Assignment 2-IM – Niha Yadav</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -153,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assignment2-im</h1>
+<h1 class="title">Assignment 2-IM</h1>
 </div>
 
 
@@ -170,6 +204,105 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<ol type="1">
+<li><p>A relation schema is the structure or blueprint of a table, defining column names and data types. An example would be: Students(student_id, name, major, age). A relation is the actual table itself, including column names and all stored records. An example would be a table named Students, which has all of the student data. The instance is the current snapshot of data in a table at a given time. An example would be a specific set of student records at a moment in time.</p></li>
+<li></li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeRsvg)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsvg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to librsvg 2.57.0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the diagram and store it in a variable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>diagram <span class="ot">&lt;-</span> <span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph bank_database {</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">    graph [layout = dot, rankdir = LR]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    node [shape = plaintext]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    branch [label = &lt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Branch&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;branch_name (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;branch_city&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;assets&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">    customer [label = &lt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Customer&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;ID (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;customer_name&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;customer_street&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;customer_city&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">    loan [label = &lt;</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Loan&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;loan_number (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;branch_name (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;amount&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">    borrower [label = &lt;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Borrower&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;ID (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;loan_number (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">    account [label = &lt;</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Account&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;account_number (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;branch_name (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;balance&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="st">    depositor [label = &lt;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Depositor&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;ID (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="st">        &lt;TR&gt;&lt;TD&gt;account_number (FK)&lt;/TD&gt;&lt;/TR&gt;</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/TABLE&gt;&gt;]</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="st">    # Define relationships</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="st">    branch -&gt; loan [label = 'has loans']</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="st">    branch -&gt; account [label = 'holds accounts']</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="st">    customer -&gt; borrower [label = 'borrows']</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="st">    customer -&gt; depositor [label = 'deposits']</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="st">    loan -&gt; borrower [label = 'is borrowed']</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="st">    account -&gt; depositor [label = 'is linked']</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DiagrammeR graph to SVG format</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>svg_code <span class="ot">&lt;-</span> <span class="fu">export_svg</span>(diagram)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Save as an SVG file</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(svg_code, <span class="st">"bank_schema.svg"</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SVG to PNG</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">rsvg_png</span>(<span class="st">"bank_schema.svg"</span>, <span class="st">"bank_schema.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bank_schema.png" class="img-fluid figure-img"></p>
+<figcaption>Bank Database Schema</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Loan - branch_name Borrower- ID &amp; loan_number Account- branch_name Depositor- account_number &amp; ID</li>
+</ol>
 
 
 
