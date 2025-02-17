@@ -1,5 +1,56 @@
 ---
-title: "assignment3-km"
-format: html
+title: "Assignment 3 - Knowledge Mining"
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-fold: true
+    code-summary: "Show R Code"
 ---
 
+## Navigation
+
+-   [Mining Scientific Papers: NLP-enhanced Bibliometrics](#mining-scientific-papers-nlp-enhanced-bibliometrics)\
+-   [Mining Scientific Papers, Volume II](#mining-scientific-papers-volume-ii)\
+-   [Comparison](#comparison)\
+-   [Key Research Questions](#questions)
+
+------------------------------------------------------------------------
+
+## Mining Scientific Papers: NLP-enhanced Bibliometrics {#mining-scientific-papers-nlp-enhanced-bibliometrics}
+
+Traditional bibliometrics mainly uses metadata (titles, authors, references), but full-text processing allows for deeper analysis.
+
+-   The rise of Open Access (OA) platforms (e.g., ArXiv, CiteSeer, PLOS) has opened new research directions.\
+-   NLP techniques (e.g., NLTK, Mallet, OpenNLP, CiteSpace, AllenNLP) help extract knowledge from scientific texts.\
+-   A key challenge is ensuring reproducibility through standardized annotated datasets and evaluation protocols.
+
+------------------------------------------------------------------------
+
+## Mining Scientific Papers, Volume II {#mining-scientific-papers-volume-ii}
+
+The availability of full-text scientific papers in machine-readable formats has transformed bibliometric research.
+
+-   Open Access (OA) platforms like ArXiv, Semantic Scholar, CiteSeer, and PLOS have facilitated large-scale text mining.\
+-   NLP tools (e.g., Spacy, NLTK, Mallet, OpenNLP, CoreNLP) enable advanced text processing.
+
+------------------------------------------------------------------------
+
+## Comparison {#comparison}
+
+| Aspect | Volume I: NLP-enhanced Bibliometrics | Volume II: Knowledge Discovery & Data Exploitation |
+|----------------|----------------------------|----------------------------|
+| Focus | Improving citation-based bibliometrics | AI-driven knowledge extraction |
+| Methods | NLP-based rule-based techniques | Deep learning and self-supervised learning |
+| Data Emphasis | Metadata and citation patterns | Full-text analysis, knowledge graphs, automation |
+
+------------------------------------------------------------------------
+
+## Questions {#questions}
+
+-   How much scientific data is required for meaningful knowledge discovery?\
+-   How can extracted knowledge be represented effectively?\
+-   What types of data can be automatically extracted and efficiently used?
+
+------------------------------------------------------------------------

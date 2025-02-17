@@ -4,12 +4,10 @@ format: html
 editor: visual
 ---
 
-1. 
-A relation schema is the structure or blueprint of a table, defining column names and data types. An example would be: Students(student_id, name, major, age). 
-A relation is the actual table itself, including column names and all stored records. An example would be a table named Students, which has all of the student data. 
-The instance is the current snapshot of data in a table at a given time. An example would be a specific set of student records at a moment in time. 
+1.  A relation schema is the structure or blueprint of a table, defining column names and data types. An example would be: Students(student_id, name, major, age). A relation is the actual table itself, including column names and all stored records. An example would be a table named Students, which has all of the student data. The instance is the current snapshot of data in a table at a given time. An example would be a specific set of student records at a moment in time.
 
-2.
+2.  
+
 ```{r}
 library(DiagrammeR)
 library(DiagrammeRsvg)
@@ -89,12 +87,7 @@ writeLines(svg_code, "bank_schema.svg")
 rsvg_png("bank_schema.svg", "bank_schema.png")
 
 ```
+
 ![Bank Database Schema](bank_schema.png)
 
-3.
-Loan - branch_name
-Borrower- ID & loan_number
-Account- branch_name
-Depositor- account_number & ID
-
-
+3.  Loan - branch_name Borrower- ID & loan_number Account- branch_name Depositor- account_number & ID

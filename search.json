@@ -208,5 +208,47 @@
     "title": "Assignment 2-IM",
     "section": "",
     "text": "A relation schema is the structure or blueprint of a table, defining column names and data types. An example would be: Students(student_id, name, major, age). A relation is the actual table itself, including column names and all stored records. An example would be a table named Students, which has all of the student data. The instance is the current snapshot of data in a table at a given time. An example would be a specific set of student records at a moment in time.\n\n\n\n\nShow R Code\nlibrary(DiagrammeR)\nlibrary(DiagrammeRsvg)\nlibrary(rsvg)\n\n\nLinking to librsvg 2.57.0\n\n\nShow R Code\n# Create the diagram and store it in a variable\ndiagram &lt;- grViz(\"\n  digraph bank_database {\n    graph [layout = dot, rankdir = LR]\n\n    node [shape = plaintext]\n\n    branch [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Branch&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;branch_name (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;branch_city&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;assets&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    customer [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Customer&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;ID (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;customer_name&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;customer_street&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;customer_city&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    loan [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Loan&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;loan_number (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;branch_name (FK)&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;amount&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    borrower [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Borrower&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;ID (FK)&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;loan_number (FK)&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    account [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Account&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;&lt;U&gt;account_number (PK)&lt;/U&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;branch_name (FK)&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;balance&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    depositor [label = &lt;\n      &lt;TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'&gt;\n        &lt;TR&gt;&lt;TD COLSPAN='2'&gt;&lt;B&gt;Depositor&lt;/B&gt;&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;ID (FK)&lt;/TD&gt;&lt;/TR&gt;\n        &lt;TR&gt;&lt;TD&gt;account_number (FK)&lt;/TD&gt;&lt;/TR&gt;\n      &lt;/TABLE&gt;&gt;]\n\n    # Define relationships\n    branch -&gt; loan [label = 'has loans']\n    branch -&gt; account [label = 'holds accounts']\n    customer -&gt; borrower [label = 'borrows']\n    customer -&gt; depositor [label = 'deposits']\n    loan -&gt; borrower [label = 'is borrowed']\n    account -&gt; depositor [label = 'is linked']\n  }\n\")\n\n# Convert DiagrammeR graph to SVG format\nsvg_code &lt;- export_svg(diagram)\n\n# Save as an SVG file\nwriteLines(svg_code, \"bank_schema.svg\")\n\n# Convert SVG to PNG\nrsvg_png(\"bank_schema.svg\", \"bank_schema.png\")\n\n\n\n\n\nBank Database Schema\n\n\n\nLoan - branch_name Borrower- ID & loan_number Account- branch_name Depositor- account_number & ID"
+  },
+  {
+    "objectID": "assignment3-km.html",
+    "href": "assignment3-km.html",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "",
+    "text": "Mining Scientific Papers: NLP-enhanced Bibliometrics\n\nMining Scientific Papers, Volume II\n\nComparison\n\nKey Research Questions"
+  },
+  {
+    "objectID": "assignment3-km.html#navigation",
+    "href": "assignment3-km.html#navigation",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "",
+    "text": "Mining Scientific Papers: NLP-enhanced Bibliometrics\n\nMining Scientific Papers, Volume II\n\nComparison\n\nKey Research Questions"
+  },
+  {
+    "objectID": "assignment3-km.html#mining-scientific-papers-nlp-enhanced-bibliometrics",
+    "href": "assignment3-km.html#mining-scientific-papers-nlp-enhanced-bibliometrics",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "2 Mining Scientific Papers: NLP-enhanced Bibliometrics",
+    "text": "2 Mining Scientific Papers: NLP-enhanced Bibliometrics\nTraditional bibliometrics mainly uses metadata (titles, authors, references), but full-text processing allows for deeper analysis.\n\nThe rise of Open Access (OA) platforms (e.g., ArXiv, CiteSeer, PLOS) has opened new research directions.\n\nNLP techniques (e.g., NLTK, Mallet, OpenNLP, CiteSpace, AllenNLP) help extract knowledge from scientific texts.\n\nA key challenge is ensuring reproducibility through standardized annotated datasets and evaluation protocols."
+  },
+  {
+    "objectID": "assignment3-km.html#mining-scientific-papers-volume-ii",
+    "href": "assignment3-km.html#mining-scientific-papers-volume-ii",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "3 Mining Scientific Papers, Volume II",
+    "text": "3 Mining Scientific Papers, Volume II\nThe availability of full-text scientific papers in machine-readable formats has transformed bibliometric research.\n\nOpen Access (OA) platforms like ArXiv, Semantic Scholar, CiteSeer, and PLOS have facilitated large-scale text mining.\n\nNLP tools (e.g., Spacy, NLTK, Mallet, OpenNLP, CoreNLP) enable advanced text processing."
+  },
+  {
+    "objectID": "assignment3-km.html#comparison",
+    "href": "assignment3-km.html#comparison",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "4 Comparison",
+    "text": "4 Comparison\n\n\n\n\n\n\n\n\nAspect\nVolume I: NLP-enhanced Bibliometrics\nVolume II: Knowledge Discovery & Data Exploitation\n\n\n\n\nFocus\nImproving citation-based bibliometrics\nAI-driven knowledge extraction\n\n\nMethods\nNLP-based rule-based techniques\nDeep learning and self-supervised learning\n\n\nData Emphasis\nMetadata and citation patterns\nFull-text analysis, knowledge graphs, automation"
+  },
+  {
+    "objectID": "assignment3-km.html#questions",
+    "href": "assignment3-km.html#questions",
+    "title": "Assignment 3 - Knowledge Mining",
+    "section": "5 Questions",
+    "text": "5 Questions\n\nHow much scientific data is required for meaningful knowledge discovery?\n\nHow can extracted knowledge be represented effectively?\n\nWhat types of data can be automatically extracted and efficiently used?"
   }
 ]
