@@ -3,3 +3,100 @@ title: "assignment3-im"
 format: html
 ---
 
+```{r}
+library(DBI)
+library(RSQLite)
+
+# Connect to the SQLite database file
+con <- dbConnect(RSQLite::SQLite(), "files/sql.db")
+```
+
+2. 
+```{sql connection=con}
+SELECT DISTINCT ID FROM takes;
+```
+
+```{sql connection=con}
+SELECT ID, name, dept_name, salary FROM instructor;
+```
+
+```{sql connection=con}
+SELECT DISTINCT dept_name FROM department;
+```
+3.
+```{sql connection=con}
+SELECT DISTINCT student.ID, student.name
+FROM student
+JOIN takes ON student.ID = takes.ID
+JOIN course ON takes.course_id = course.course_id
+JOIN department ON course.dept_name = department.dept_name
+WHERE department.dept_name = 'Comp. Sci.';
+```
+
+```{sql connection=con}
+SELECT DISTINCT student.ID, student.name, takes.grade
+FROM student
+JOIN takes ON student.ID = takes.ID
+JOIN course ON takes.course_id = course.course_id
+JOIN department ON course.dept_name = department.dept_name
+WHERE department.dept_name = 'Comp. Sci.';
+```
+
+```{sql connection=con}
+SELECT DISTINCT s.ID, s.name
+FROM student s
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM takes t
+    JOIN section sec ON t.course_id = sec.course_id AND t.sec_id = sec.sec_id AND t.semester = sec.semester AND t.year = sec.year
+    WHERE t.ID = s.ID AND sec.year < 2017
+);
+
+```
+
+```{sql connection=con}
+SELECT dept_name, MAX(salary) AS max_salary
+FROM instructor
+GROUP BY dept_name;
+
+```
+
+```{sql connection=con}
+SELECT MIN(max_salary) AS lowest_max_salary
+FROM (
+    SELECT dept_name, MAX(salary) AS max_salary
+    FROM instructor
+    GROUP BY dept_name
+) AS dept_max_salaries;
+
+```
+
+```{sql connection=con}
+SELECT i.dept_name, i.ID, i.name, i.salary
+FROM instructor i
+JOIN (
+    SELECT dept_name, MAX(salary) AS max_salary
+    FROM instructor
+    GROUP BY dept_name
+) AS max_salaries
+ON i.dept_name = max_salaries.dept_name AND i.salary = max_salaries.max_salary
+ORDER BY max_salaries.max_salary;
+
+```
+4.
+```{sql connection=con}
+SELECT i.ID, i.name
+FROM instructor i
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM teaches t
+    JOIN takes tk ON t.course_id = tk.course_id AND t.sec_id = tk.sec_id AND t.semester = tk.semester AND t.year = tk.year
+    WHERE t.ID = i.ID AND tk.grade = 'A'
+);
+
+```
+
+```{r}
+dbDisconnect(con)
+```
+
