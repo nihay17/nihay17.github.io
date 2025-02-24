@@ -213,8 +213,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <ol type="1">
-<li>A strong entity has a primary key that uniquely identifies each record. It does not depend on any other entity for its existence.</li>
+<li></li>
 </ol>
+<p>A strong entity has a primary key that uniquely identifies each record. It does not depend on any other entity for its existence.</p>
 <p>Example: Buildings in a City</p>
 <p>Buildings can be uniquely identified by their building_id. They do not require another entity to exist.</p>
 <p>A weak entity cannot exist without a strong entity. It does not have a sufficient primary key on its own and instead uses a foreign key + a discriminator (partial key) to form a composite primary key.</p>
@@ -237,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>Show R Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the diagram and store it in a variable</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>diagram <span class="ot">&lt;-</span> <span class="fu">grViz</span>(<span class="st">"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph LeagueStats {</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph league_database {</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">    graph [layout = dot, rankdir = LR]</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    node [shape = plaintext]</span></span>
@@ -340,6 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SVG to PNG</span></span>
 <span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="fu">rsvg_png</span>(<span class="st">"league_schema.svg"</span>, <span class="st">"league_schema.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="league_schema.png" class="img-fluid figure-img"></p>
+<figcaption>League Database Schema</figcaption>
+</figure>
 </div>
 <ol start="3" type="1">
 <li></li>

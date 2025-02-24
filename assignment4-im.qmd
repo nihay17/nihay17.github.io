@@ -133,7 +133,7 @@ writeLines(svg_code, "league_schema.svg")
 rsvg_png("league_schema.svg", "league_schema.png")
 
 ```
-
+![League Database Schema](league_schema.png)
 
 3.
 a.
