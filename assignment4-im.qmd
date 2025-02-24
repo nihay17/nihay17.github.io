@@ -1,0 +1,170 @@
+---
+title: "Assignment 4"
+format: html
+---
+
+1.
+
+A strong entity has a primary key that uniquely identifies each record. It does not depend on any other entity for its existence.
+
+Example: Buildings in a City
+
+Buildings can be uniquely identified by their building_id.
+They do not require another entity to exist.
+
+A weak entity cannot exist without a strong entity. It does not have a sufficient primary key on its own and instead uses a foreign key + a discriminator (partial key) to form a composite primary key.
+
+Example: Apartments within a Building
+
+Apartments exist inside buildings and are dependent on a Building.
+An apartment number (apt_no) alone is not unique across all buildings.
+To uniquely identify an apartment, we need both building_id and apt_no.
+
+2.
+
+```{r}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+
+# Create the diagram and store it in a variable
+diagram <- grViz("
+  digraph league_database {
+    graph [layout = dot, rankdir = LR]
+
+    node [shape = plaintext]
+
+    League [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>League</B></TD></TR>
+        <TR><TD><U>league_id (PK)</U></TD></TR>
+        <TR><TD>name</TD></TR>
+      </TABLE>>]
+
+    Team [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Team</B></TD></TR>
+        <TR><TD><U>team_id (PK)</U></TD></TR>
+        <TR><TD>name</TD></TR>
+        <TR><TD>league_id (FK)</TD></TR>
+      </TABLE>>]
+
+    Match [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Match</B></TD></TR>
+        <TR><TD><U>match_id (PK)</U></TD></TR>
+        <TR><TD>date</TD></TR>
+        <TR><TD>location</TD></TR>
+      </TABLE>>]
+
+    Match_Teams [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Match_Teams</B></TD></TR>
+        <TR><TD>match_id (FK)</TD></TR>
+        <TR><TD>team_id (FK)</TD></TR>
+        <TR><TD>team_score</TD></TR>
+      </TABLE>>]
+
+    Player [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Player</B></TD></TR>
+        <TR><TD><U>player_id (PK)</U></TD></TR>
+        <TR><TD>name</TD></TR>
+        <TR><TD>position</TD></TR>
+      </TABLE>>]
+
+    PlayerHistory [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>PlayerHistory</B></TD></TR>
+        <TR><TD>player_id (FK)</TD></TR>
+        <TR><TD>team_id (FK)</TD></TR>
+        <TR><TD>start_date</TD></TR>
+        <TR><TD>end_date</TD></TR>
+      </TABLE>>]
+
+    Plays_In [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>Plays_In</B></TD></TR>
+        <TR><TD>match_id (FK)</TD></TR>
+        <TR><TD>player_id (FK)</TD></TR>
+        <TR><TD>minutes_played</TD></TR>
+      </TABLE>>]
+
+    PlayerStats [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>PlayerStats</B></TD></TR>
+        <TR><TD>match_id (FK)</TD></TR>
+        <TR><TD>player_id (FK)</TD></TR>
+        <TR><TD>points</TD></TR>
+        <TR><TD>assists</TD></TR>
+        <TR><TD>rebounds</TD></TR>
+        <TR><TD>fouls</TD></TR>
+      </TABLE>>]
+
+    SummaryStats [label = <
+      <TABLE BORDER='1' CELLBORDER='1' CELLSPACING='0'>
+        <TR><TD COLSPAN='2'><B>SummaryStats</B></TD></TR>
+        <TR><TD>total_points</TD></TR>
+        <TR><TD>avg_points</TD></TR>
+        <TR><TD>total_assists</TD></TR>
+        <TR><TD>avg_assists</TD></TR>
+      </TABLE>>, shape=ellipse];
+
+    # Define relationships
+    League -> Team [label='contains']
+    Team -> PlayerHistory [label='has players']
+    Match -> Match_Teams [label='includes']
+    Match_Teams -> Team [label='participating']
+    Match -> Plays_In [label='includes']
+    Player -> PlayerHistory [label='belongs to']
+    Player -> Plays_In [label='participates']
+    Plays_In -> PlayerStats [label='records']
+    PlayerStats -> SummaryStats [label='aggregates']
+  }
+")
+
+# Convert DiagrammeR graph to SVG format
+svg_code <- export_svg(diagram)
+
+# Save as an SVG file
+writeLines(svg_code, "league_schema.svg")
+
+# Convert SVG to PNG
+rsvg_png("league_schema.svg", "league_schema.png")
+
+```
+
+
+3.
+a.
+
+The takes table already has the columns used for the group by and where clause. So it already has the information and does not need to join another table. 
+ii.
+```{r}
+library(DBI)
+library(RSQLite)
+
+# Connect to the SQLite database file
+con <- dbConnect(RSQLite::SQLite(), "files/sql.db")
+```
+```{sql connection=con}
+select course_id, semester, year, sec_id, avg (tot_cred) 
+from takes natural join student 
+where year = 2017 
+group by course_id, semester, year, sec_id 
+having count (ID) >=2;
+```
+b.
+
+```{sql connection=con}
+SELECT s.ID
+FROM student s
+LEFT JOIN takes t ON s.ID = t.ID
+WHERE t.ID IS NULL;
+
+```
+
+```{r}
+dbDisconnect(con)
+```
+

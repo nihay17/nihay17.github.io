@@ -11,7 +11,8 @@ library(RSQLite)
 con <- dbConnect(RSQLite::SQLite(), "files/sql.db")
 ```
 
-2. 
+2.  
+
 ```{sql connection=con}
 SELECT DISTINCT ID FROM takes;
 ```
@@ -23,7 +24,9 @@ SELECT ID, name, dept_name, salary FROM instructor;
 ```{sql connection=con}
 SELECT DISTINCT dept_name FROM department;
 ```
-3.
+
+3.  
+
 ```{sql connection=con}
 SELECT DISTINCT student.ID, student.name
 FROM student
@@ -83,7 +86,9 @@ ON i.dept_name = max_salaries.dept_name AND i.salary = max_salaries.max_salary
 ORDER BY max_salaries.max_salary;
 
 ```
-4.
+
+4.  
+
 ```{sql connection=con}
 SELECT i.ID, i.name
 FROM instructor i
@@ -99,4 +104,3 @@ WHERE NOT EXISTS (
 ```{r}
 dbDisconnect(con)
 ```
-
