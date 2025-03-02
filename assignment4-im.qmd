@@ -3,24 +3,21 @@ title: "Assignment 4"
 format: html
 ---
 
-1.
+1.  
 
 A strong entity has a primary key that uniquely identifies each record. It does not depend on any other entity for its existence.
 
 Example: Buildings in a City
 
-Buildings can be uniquely identified by their building_id.
-They do not require another entity to exist.
+Buildings can be uniquely identified by their building_id. They do not require another entity to exist.
 
 A weak entity cannot exist without a strong entity. It does not have a sufficient primary key on its own and instead uses a foreign key + a discriminator (partial key) to form a composite primary key.
 
 Example: Apartments within a Building
 
-Apartments exist inside buildings and are dependent on a Building.
-An apartment number (apt_no) alone is not unique across all buildings.
-To uniquely identify an apartment, we need both building_id and apt_no.
+Apartments exist inside buildings and are dependent on a Building. An apartment number (apt_no) alone is not unique across all buildings. To uniquely identify an apartment, we need both building_id and apt_no.
 
-2.
+2.  
 
 ```{r}
 library(DiagrammeR)
@@ -133,13 +130,17 @@ writeLines(svg_code, "league_schema.svg")
 rsvg_png("league_schema.svg", "league_schema.png")
 
 ```
+
 ![League Database Schema](league_schema.png)
 
-3.
-a.
+3.  
 
-The takes table already has the columns used for the group by and where clause. So it already has the information and does not need to join another table. 
-ii.
+<!-- -->
+
+a.  
+
+The takes table already has the columns used for the group by and where clause. So it already has the information and does not need to join another table. ii.
+
 ```{r}
 library(DBI)
 library(RSQLite)
@@ -147,6 +148,7 @@ library(RSQLite)
 # Connect to the SQLite database file
 con <- dbConnect(RSQLite::SQLite(), "files/sql.db")
 ```
+
 ```{sql connection=con}
 select course_id, semester, year, sec_id, avg (tot_cred) 
 from takes natural join student 
@@ -154,7 +156,8 @@ where year = 2017
 group by course_id, semester, year, sec_id 
 having count (ID) >=2;
 ```
-b.
+
+b.  
 
 ```{sql connection=con}
 SELECT s.ID
@@ -171,5 +174,3 @@ dbDisconnect(con)
 Research Proposal
 
 [Proposal](./files/yadav_proposal.pdf)
-
-

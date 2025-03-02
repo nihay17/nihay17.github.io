@@ -6,51 +6,65 @@ format:
     toc-depth: 2
     number-sections: true
     code-fold: true
-    code-summary: "Show R Code"
+    code-summary: "Prompt Assignment"
+    navbar:
+      left:
+        - text: "Home"
+          href: "#introduction"
+        - text: "Initial Responses"
+          href: "#initial-prompt-responses"
+        - text: "Redefined Prompt"
+          href: "#redefining-the-prompt"
+        - text: "Collaboration"
+          href: "#cross-model-collaboration"
+        - text: "Reflection"
+          href: "#reflection"
 ---
 
-## Navigation
+# Introduction
 
--   [Mining Scientific Papers: NLP-enhanced Bibliometrics](#mining-scientific-papers-nlp-enhanced-bibliometrics)\
--   [Mining Scientific Papers, Volume II](#mining-scientific-papers-volume-ii)\
--   [Comparison](#comparison)\
--   [Key Research Questions](#questions)
+**Prompt:** "Conduct a 2,000-word structured systematic literature review on the applications of data mining and machine learning in social media domains. Include a methodology section, synthesize key findings, identify trends and gaps, and propose one testable hypothesis. Use an academic tone and emulate systematic review standards."
 
-------------------------------------------------------------------------
+# Initial Prompt Responses
 
-## Mining Scientific Papers: NLP-enhanced Bibliometrics {#mining-scientific-papers-nlp-enhanced-bibliometrics}
+## Grok-3
 
-Traditional bibliometrics mainly uses metadata (titles, authors, references), but full-text processing allows for deeper analysis.
+-   **Structure:** Yes\
+-   **Synthesis:** Yes\
+-   **Trends and Gaps:** Yes\
+-   **Hypothesis:** Yes\
+-   **References:** Not fully cited; mentions rationale for omission
 
--   The rise of Open Access (OA) platforms (e.g., ArXiv, CiteSeer, PLOS) has opened new research directions.\
--   NLP techniques (e.g., NLTK, Mallet, OpenNLP, CiteSpace, AllenNLP) help extract knowledge from scientific texts.\
--   A key challenge is ensuring reproducibility through standardized annotated datasets and evaluation protocols.
+## ChatGPT
 
-------------------------------------------------------------------------
+-   **Structure:** Yes\
+-   **Synthesis:** Yes\
+-   **Trends and Gaps:** Yes\
+-   **Hypothesis:** Yes\
+-   **References:** None provided
 
-## Mining Scientific Papers, Volume II {#mining-scientific-papers-volume-ii}
+### Strengths and Weaknesses
 
-The availability of full-text scientific papers in machine-readable formats has transformed bibliometric research.
+Grok-3 demonstrated a superior structure and a more detailed approach, particularly in its elaboration of trends and gaps. Its response was organized into clear subsections, enhancing readability and coherence. In contrast, ChatGPT covered multiple subtopics but lacked subsection divisions, resulting in a less structured document. Additionally, ChatGPT provided no citations, though it suggested potential sources and retrieval methods, whereas Grok-3 included partial references and explained their absence.
 
--   Open Access (OA) platforms like ArXiv, Semantic Scholar, CiteSeer, and PLOS have facilitated large-scale text mining.\
--   NLP tools (e.g., Spacy, NLTK, Mallet, OpenNLP, CoreNLP) enable advanced text processing.
+# Redefining the Prompt
 
-------------------------------------------------------------------------
+**Prompt 2:** "Imagine you’re a data scientist conducting a 2,000-word structured systematic literature review on how data mining and machine learning are applied in social media domains. Outline a clear methodology, synthesize key findings with fresh insights, highlight trends and gaps, and propose one bold, testable hypothesis. Maintain a rigorous academic tone."
 
-## Comparison {#comparison}
+## Grok-3
 
-| Aspect | Volume I: NLP-enhanced Bibliometrics | Volume II: Knowledge Discovery & Data Exploitation |
-|----------------|----------------------------|----------------------------|
-| Focus | Improving citation-based bibliometrics | AI-driven knowledge extraction |
-| Methods | NLP-based rule-based techniques | Deep learning and self-supervised learning |
-| Data Emphasis | Metadata and citation patterns | Full-text analysis, knowledge graphs, automation |
+The revised prompt emphasized a data scientist’s perspective. Grok-3 broke down the 2,000-word count into distinct sections, improving specificity and allocation of content.
 
-------------------------------------------------------------------------
+## ChatGPT
 
-## Questions {#questions}
+ChatGPT refined its methodology section for clarity, incorporated recent advancements in machine learning techniques, and expanded its discussion of trends and research gaps.
 
--   How much scientific data is required for meaningful knowledge discovery?\
--   How can extracted knowledge be represented effectively?\
--   What types of data can be automatically extracted and efficiently used?
+# Cross-Model Collaboration
 
-------------------------------------------------------------------------
+**Prompt 3:** "Using these drafts from two AI models, produce a 2,000-word structured systematic literature review on how data mining and machine learning are applied in social media domains. Combine the strongest methodology, findings, trends, gaps, and hypothesis into a cohesive, academically sound document."
+
+For this analysis, I selected Grok-3 as the primary tool. Despite this being my first experience with Grok-3, I was impressed by its speed and consistency. It proved to be the more accurate of the two models and effectively integrated the strengths of both drafts into a single cohesive paper. The resulting structure mirrored that of the previous drafts but omitted references entirely. This omission likely stemmed from ChatGPT’s lack of citations and Grok-3’s decision to merge the two outputs rather than generate a fresh review with new references.
+
+# Reflection
+
+Both AI models produced papers of academic caliber. Given the broad nature of the initial prompt, each model independently selected a focus: ChatGPT addressed misinformation on social media, while Grok-3 explored the rising prevalence of AI applications. This exercise highlighted the importance of prompt specificity—more detailed instructions yielded higher-quality outputs. While AI can be leveraged effectively for academic writing, it is not infallible; errors and lack of precision persist, underscoring its limitations compared to human authors. I conclude that AI should serve as a writing assistant rather than a standalone replacement for academic work.
