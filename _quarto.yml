@@ -40,7 +40,6 @@ format:
       - brand
     css: styles.css
     toc: true
-    toc-depth: 15
     number-sections: true
     code-fold: true
     code-summary: "Show R Code"
