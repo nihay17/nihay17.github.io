@@ -25,6 +25,10 @@ format:
 
 **Prompt:** "Conduct a 2,000-word structured systematic literature review on the applications of data mining and machine learning in social media domains. Include a methodology section, synthesize key findings, identify trends and gaps, and propose one testable hypothesis. Use an academic tone and emulate systematic review standards."
 
+Research Proposal
+
+[Proposal](./files/Proposal_Powerpoint.pdf)
+
 # Initial Prompt Responses
 
 ## Grok-3
@@ -68,7 +72,3 @@ For this analysis, I selected Grok-3 as the primary tool. Despite this being my 
 # Reflection
 
 Both AI models produced papers of academic caliber. Given the broad nature of the initial prompt, each model independently selected a focus: ChatGPT addressed misinformation on social media, while Grok-3 explored the rising prevalence of AI applications. This exercise highlighted the importance of prompt specificity—more detailed instructions yielded higher-quality outputs. While AI can be leveraged effectively for academic writing, it is not infallible; errors and lack of precision persist, underscoring its limitations compared to human authors. I conclude that AI should serve as a writing assistant rather than a standalone replacement for academic work.
-
-Research Proposal
-
-[Proposal](./files/Proposal_Powerpoint.pdf)
