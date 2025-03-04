@@ -71,4 +71,4 @@ Both AI models produced papers of academic caliber. Given the broad nature of th
 
 Research Proposal
 
-[Proposal](./files/Proposal Powerpoint.pdf)
+[Proposal](./files/Proposal_Powerpoint.pdf)
