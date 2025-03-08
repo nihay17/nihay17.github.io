@@ -1,0 +1,114 @@
+---
+title: "Assignment 6-im"
+format: html
+---
+
+1.  
+
+Stack Exchange API Technologies used:
+
+Operating System: Microsoft Windows Server 2019 x64
+
+Web Server: IIS 10
+
+Database: SQL Server 2019 running on Microsoft Windows Server 2016 x64
+
+Programming Language: C#
+
+Software Development Tools: Visual Studio 2019
+
+Framework: Microsoft .NET 6.0 and ASP.NET Core 6.0
+
+View Engine: Razor
+
+Browser Framework: jQuery 1.12.4
+
+Data Access Layer: Entity Framework Core 2.2 and Dapper
+
+Cache / Additional Data: Redis 4.0.7 via StackExchange.Redis, with serialization via protobuf-net
+
+Source Control: Git using a GitHub Enterprise instance hosted by GitHub
+
+2.  
+
+<!-- -->
+
+i.  
+
+```{r}
+library(DBI)
+library(RSQLite)
+
+# Connect to the SQLite database file
+con <- dbConnect(RSQLite::SQLite(), "files/sql.db")
+```
+
+```{sql connection=con}
+SELECT student.ID
+FROM student
+LEFT OUTER JOIN advisor ON student.ID = advisor.s_id
+WHERE advisor.s_id IS NULL;
+
+```
+
+ii. 
+
+```{sql connection=con}
+SELECT instructor.ID, instructor.name
+FROM instructor
+JOIN teaches ON instructor.ID = teaches.ID
+JOIN course ON teaches.course_id = course.course_id
+GROUP BY instructor.ID, instructor.name, instructor.dept_name
+HAVING COUNT(DISTINCT course.course_id) = 
+  (SELECT COUNT(DISTINCT course.course_id)
+   FROM course
+   WHERE course.dept_name = instructor.dept_name)
+ORDER BY instructor.name;
+
+```
+
+3.  
+
+```{r}
+library(RPostgres) 
+library(DBI)        
+library(odbc)       
+con <- dbConnect(
+  RPostgres::Postgres(),
+  dbname   = "university",   
+  host     = "localhost",    
+  port     = 5432,           
+  user     = "postgres",     
+  password = "life123$"     
+)
+
+## Perform queries
+
+# (a) Simple query: fetch all rows/columns in 'instructor' and create a data object
+instructor_data <- dbGetQuery(con, "SELECT * FROM instructor")
+head(instructor_data)
+
+# (b) Another query: fetch instructors in 'Comp. Sci.' department 
+# with a salary > 60000 (example condition)
+comp_sci_instructors <- dbGetQuery(
+  con, 
+  "SELECT * FROM instructor 
+   WHERE dept_name = 'Comp. Sci.' AND salary > 60000;"
+)
+comp_sci_instructors
+
+# (c) Query a different table, e.g., 'student', and store in an R dataframe
+student_data <- dbGetQuery(con, "SELECT * FROM student WHERE tot_cred >= 50")
+head(student_data)
+
+
+## Export to CSV
+
+# Export the entire 'instructor' table (already in instructor_data) to CSV
+write.csv(instructor_data, file = "instructor_export.csv", row.names = FALSE)
+
+## Clean up
+
+# Always disconnect when done
+dbDisconnect(con)
+```
