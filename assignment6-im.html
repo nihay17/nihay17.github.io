@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>assignment3-im – Niha Yadav</title>
+<title>Assignment 6-im – Niha Yadav</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assignment3-im</h1>
+<h1 class="title">Assignment 6-im</h1>
 </div>
 
 
@@ -220,6 +220,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<ol type="1">
+<li></li>
+</ol>
+<p>Stack Exchange API Technologies used:</p>
+<p>Operating System: Microsoft Windows Server 2019 x64</p>
+<p>Web Server: IIS 10</p>
+<p>Database: SQL Server 2019 running on Microsoft Windows Server 2016 x64</p>
+<p>Programming Language: C#</p>
+<p>Software Development Tools: Visual Studio 2019</p>
+<p>Framework: Microsoft .NET 6.0 and ASP.NET Core 6.0</p>
+<p>View Engine: Razor</p>
+<p>Browser Framework: jQuery 1.12.4</p>
+<p>Data Access Layer: Entity Framework Core 2.2 and Dapper</p>
+<p>Cache / Additional Data: Redis 4.0.7 via StackExchange.Redis, with serialization via protobuf-net</p>
+<p>Source Control: Git using a GitHub Enterprise instance hosted by GitHub</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<!-- -->
+<ol type="i">
+<li></li>
+</ol>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
@@ -230,172 +252,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"files/sql.db"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<ol start="2" type="1">
+<div class="cell">
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> student.<span class="kw">ID</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> student</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> advisor <span class="kw">ON</span> student.<span class="kw">ID</span> <span class="op">=</span> advisor.s_id</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> advisor.s_id <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">19991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">54321</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">55739</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">70557</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ol start="2" type="i">
 <li></li>
 </ol>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> <span class="kw">ID</span> <span class="kw">FROM</span> takes;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> instructor.<span class="kw">ID</span>, instructor.name</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> instructor</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> teaches <span class="kw">ON</span> instructor.<span class="kw">ID</span> <span class="op">=</span> teaches.<span class="kw">ID</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> course <span class="kw">ON</span> teaches.course_id <span class="op">=</span> course.course_id</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> instructor.<span class="kw">ID</span>, instructor.name, instructor.dept_name</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> course.course_id) <span class="op">=</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> course.course_id)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> course</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>   <span class="kw">WHERE</span> course.dept_name <span class="op">=</span> instructor.dept_name)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> instructor.name;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Displaying records 1 - 10</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">00128</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12345</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">19991</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">23121</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">44553</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">45678</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">54321</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">55739</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">76543</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">76653</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">ID</span>, name, dept_name, salary <span class="kw">FROM</span> instructor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Displaying records 1 - 10</caption>
+<caption>5 records</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">ID</th>
 <th style="text-align: left;">name</th>
-<th style="text-align: left;">dept_name</th>
-<th style="text-align: right;">salary</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">10101</td>
-<td style="text-align: left;">Srinivasan</td>
-<td style="text-align: left;">Comp. Sci.</td>
-<td style="text-align: right;">65000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12121</td>
-<td style="text-align: left;">Wu</td>
-<td style="text-align: left;">Finance</td>
-<td style="text-align: right;">90000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">15151</td>
-<td style="text-align: left;">Mozart</td>
-<td style="text-align: left;">Music</td>
-<td style="text-align: right;">40000</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">22222</td>
 <td style="text-align: left;">Einstein</td>
-<td style="text-align: left;">Physics</td>
-<td style="text-align: right;">95000</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">32343</td>
 <td style="text-align: left;">El Said</td>
-<td style="text-align: left;">History</td>
-<td style="text-align: right;">60000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">33456</td>
-<td style="text-align: left;">Gold</td>
-<td style="text-align: left;">Physics</td>
-<td style="text-align: right;">87000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">45565</td>
-<td style="text-align: left;">Katz</td>
-<td style="text-align: left;">Comp. Sci.</td>
-<td style="text-align: right;">75000</td>
+<td style="text-align: left;">98345</td>
+<td style="text-align: left;">Kim</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">58583</td>
-<td style="text-align: left;">Califieri</td>
-<td style="text-align: left;">History</td>
-<td style="text-align: right;">62000</td>
+<td style="text-align: left;">15151</td>
+<td style="text-align: left;">Mozart</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">76543</td>
-<td style="text-align: left;">Singh</td>
-<td style="text-align: left;">Finance</td>
-<td style="text-align: right;">80000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">76766</td>
-<td style="text-align: left;">Crick</td>
-<td style="text-align: left;">Biology</td>
-<td style="text-align: right;">72000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> dept_name <span class="kw">FROM</span> department;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>7 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">dept_name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Biology</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Comp. Sci.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Elec. Eng.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Finance</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">History</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Music</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Physics</td>
+<td style="text-align: left;">12121</td>
+<td style="text-align: left;">Wu</td>
 </tr>
 </tbody>
 </table>
@@ -407,407 +342,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> student.<span class="kw">ID</span>, student.name</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> student</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> takes <span class="kw">ON</span> student.<span class="kw">ID</span> <span class="op">=</span> takes.<span class="kw">ID</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> course <span class="kw">ON</span> takes.course_id <span class="op">=</span> course.course_id</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> department <span class="kw">ON</span> course.dept_name <span class="op">=</span> department.dept_name</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> department.dept_name <span class="op">=</span> <span class="st">'Comp. Sci.'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RPostgres) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)        </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(odbc)       </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname   =</span> <span class="st">"university"</span>,   </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">host     =</span> <span class="st">"localhost"</span>,    </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">port     =</span> <span class="dv">5432</span>,           </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">user     =</span> <span class="st">"postgres"</span>,     </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="st">"life123$"</span>     </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Perform queries</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># (a) Simple query: fetch all rows/columns in 'instructor' and create a data object</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>instructor_data <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT * FROM instructor"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(instructor_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>6 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">00128</td>
-<td style="text-align: left;">Zhang</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12345</td>
-<td style="text-align: left;">Shankar</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">45678</td>
-<td style="text-align: left;">Levy</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">54321</td>
-<td style="text-align: left;">Williams</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">76543</td>
-<td style="text-align: left;">Brown</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">98765</td>
-<td style="text-align: left;">Bourikas</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stdout">
+<pre><code>     id           name   dept_name    salary
+1 63395       McKinnon Cybernetics  94333.99
+2 78699          Pingr  Statistics  59303.62
+3 96895           Mird   Marketing 119921.41
+4  4233            Luo     English  88791.45
+5  4034         Murata   Athletics  61387.56
+6 50885 Konstantinides   Languages  32570.50</code></pre>
 </div>
-</div>
-<div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> student.<span class="kw">ID</span>, student.name, takes.grade</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> student</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> takes <span class="kw">ON</span> student.<span class="kw">ID</span> <span class="op">=</span> takes.<span class="kw">ID</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> course <span class="kw">ON</span> takes.course_id <span class="op">=</span> course.course_id</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> department <span class="kw">ON</span> course.dept_name <span class="op">=</span> department.dept_name</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> department.dept_name <span class="op">=</span> <span class="st">'Comp. Sci.'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (b) Another query: fetch instructors in 'Comp. Sci.' department </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with a salary &gt; 60000 (example condition)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>comp_sci_instructors <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  con, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SELECT * FROM instructor </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE dept_name = 'Comp. Sci.' AND salary &gt; 60000;"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>comp_sci_instructors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Displaying records 1 - 10</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">name</th>
-<th style="text-align: left;">grade</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">00128</td>
-<td style="text-align: left;">Zhang</td>
-<td style="text-align: left;">A</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">00128</td>
-<td style="text-align: left;">Zhang</td>
-<td style="text-align: left;">A-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">12345</td>
-<td style="text-align: left;">Shankar</td>
-<td style="text-align: left;">C</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12345</td>
-<td style="text-align: left;">Shankar</td>
-<td style="text-align: left;">A</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">45678</td>
-<td style="text-align: left;">Levy</td>
-<td style="text-align: left;">F</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">45678</td>
-<td style="text-align: left;">Levy</td>
-<td style="text-align: left;">B+</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">45678</td>
-<td style="text-align: left;">Levy</td>
-<td style="text-align: left;">B</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">54321</td>
-<td style="text-align: left;">Williams</td>
-<td style="text-align: left;">A-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">54321</td>
-<td style="text-align: left;">Williams</td>
-<td style="text-align: left;">B+</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">76543</td>
-<td style="text-align: left;">Brown</td>
-<td style="text-align: left;">A</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stdout">
+<pre><code>     id     name  dept_name    salary
+1 34175    Bondi Comp. Sci. 115469.11
+2  3335 Bourrier Comp. Sci.  80797.83</code></pre>
 </div>
-</div>
-<div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> s.<span class="kw">ID</span>, s.name</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> student s</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> (</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="dv">1</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> takes t</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">JOIN</span> section sec <span class="kw">ON</span> t.course_id <span class="op">=</span> sec.course_id <span class="kw">AND</span> t.sec_id <span class="op">=</span> sec.sec_id <span class="kw">AND</span> t.semester <span class="op">=</span> sec.semester <span class="kw">AND</span> t.<span class="dt">year</span> <span class="op">=</span> sec.<span class="dt">year</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> t.<span class="kw">ID</span> <span class="op">=</span> s.<span class="kw">ID</span> <span class="kw">AND</span> sec.<span class="dt">year</span> <span class="op">&lt;</span> <span class="dv">2017</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (c) Query a different table, e.g., 'student', and store in an R dataframe</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>student_data <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT * FROM student WHERE tot_cred &gt;= 50"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(student_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Displaying records 1 - 10</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">00128</td>
-<td style="text-align: left;">Zhang</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12345</td>
-<td style="text-align: left;">Shankar</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">19991</td>
-<td style="text-align: left;">Brandt</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">23121</td>
-<td style="text-align: left;">Chavez</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">44553</td>
-<td style="text-align: left;">Peltier</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">45678</td>
-<td style="text-align: left;">Levy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">54321</td>
-<td style="text-align: left;">Williams</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">55739</td>
-<td style="text-align: left;">Sanchez</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">70557</td>
-<td style="text-align: left;">Snow</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">76543</td>
-<td style="text-align: left;">Brown</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stdout">
+<pre><code>     id       name  dept_name tot_cred
+1 79352      Rumat    Finance      100
+2 76672     Miliko Statistics      116
+3 14182 Moszkowski Civil Eng.       73
+4 44985     Prieto    Biology       91
+5 44271    Sowerby    English      108
+6 40897    Coppens       Math       58</code></pre>
 </div>
-</div>
-<div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> dept_name, <span class="fu">MAX</span>(salary) <span class="kw">AS</span> max_salary</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> instructor</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> dept_name;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>7 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">dept_name</th>
-<th style="text-align: right;">max_salary</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Biology</td>
-<td style="text-align: right;">72000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Comp. Sci.</td>
-<td style="text-align: right;">92000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Elec. Eng.</td>
-<td style="text-align: right;">80000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Finance</td>
-<td style="text-align: right;">90000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">History</td>
-<td style="text-align: right;">62000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Music</td>
-<td style="text-align: right;">40000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Physics</td>
-<td style="text-align: right;">95000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">MIN</span>(max_salary) <span class="kw">AS</span> lowest_max_salary</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> dept_name, <span class="fu">MAX</span>(salary) <span class="kw">AS</span> max_salary</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> instructor</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> dept_name</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> dept_max_salaries;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>1 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">lowest_max_salary</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">40000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> i.dept_name, i.<span class="kw">ID</span>, i.name, i.salary</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> instructor i</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> (</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> dept_name, <span class="fu">MAX</span>(salary) <span class="kw">AS</span> max_salary</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> instructor</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> dept_name</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> max_salaries</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> i.dept_name <span class="op">=</span> max_salaries.dept_name <span class="kw">AND</span> i.salary <span class="op">=</span> max_salaries.max_salary</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> max_salaries.max_salary;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>7 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">dept_name</th>
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">salary</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Music</td>
-<td style="text-align: left;">15151</td>
-<td style="text-align: left;">Mozart</td>
-<td style="text-align: right;">40000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">History</td>
-<td style="text-align: left;">58583</td>
-<td style="text-align: left;">Califieri</td>
-<td style="text-align: right;">62000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Biology</td>
-<td style="text-align: left;">76766</td>
-<td style="text-align: left;">Crick</td>
-<td style="text-align: right;">72000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Elec. Eng.</td>
-<td style="text-align: left;">98345</td>
-<td style="text-align: left;">Kim</td>
-<td style="text-align: right;">80000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Finance</td>
-<td style="text-align: left;">12121</td>
-<td style="text-align: left;">Wu</td>
-<td style="text-align: right;">90000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Comp. Sci.</td>
-<td style="text-align: left;">83821</td>
-<td style="text-align: left;">Brandt</td>
-<td style="text-align: right;">92000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Physics</td>
-<td style="text-align: left;">22222</td>
-<td style="text-align: left;">Einstein</td>
-<td style="text-align: right;">95000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<ol start="4" type="1">
-<li></li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> i.<span class="kw">ID</span>, i.name</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> instructor i</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> (</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="dv">1</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> teaches t</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">JOIN</span> takes tk <span class="kw">ON</span> t.course_id <span class="op">=</span> tk.course_id <span class="kw">AND</span> t.sec_id <span class="op">=</span> tk.sec_id <span class="kw">AND</span> t.semester <span class="op">=</span> tk.semester <span class="kw">AND</span> t.<span class="dt">year</span> <span class="op">=</span> tk.<span class="dt">year</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> t.<span class="kw">ID</span> <span class="op">=</span> i.<span class="kw">ID</span> <span class="kw">AND</span> tk.grade <span class="op">=</span> <span class="st">'A'</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>9 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">12121</td>
-<td style="text-align: left;">Wu</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">15151</td>
-<td style="text-align: left;">Mozart</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">22222</td>
-<td style="text-align: left;">Einstein</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">32343</td>
-<td style="text-align: left;">El Said</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">33456</td>
-<td style="text-align: left;">Gold</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">45565</td>
-<td style="text-align: left;">Katz</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">58583</td>
-<td style="text-align: left;">Califieri</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">76543</td>
-<td style="text-align: left;">Singh</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">98345</td>
-<td style="text-align: left;">Kim</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Export to CSV</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Export the entire 'instructor' table (already in instructor_data) to CSV</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(instructor_data, <span class="at">file =</span> <span class="st">"instructor_export.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Clean up</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Always disconnect when done</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
