@@ -4,3 +4,147 @@ format: html
 ---
 
 1.
+```{r}
+# Sample program for using quanteda for text modeling and analysis
+# Use vignette("auth", package = "rtweet") for authentication
+# Documentation: vignette("quickstart", package = "quanteda")
+# Website: https://quanteda.io/
+
+install.packages(c("quanteda","quanteda.textmodels","quanteda.textstats","quanteda.textplots"))
+
+library(quanteda)
+library(quanteda.textmodels)
+library(quanteda.textplots)
+library(readr)
+library(ggplot2)
+# Twitter data about President Biden and Xi summit in Novemeber 2021
+# Do some background search/study on the event
+# 
+summit <- read_csv("https://raw.githubusercontent.com/datageneration/datamethods/master/textanalytics/summit_11162021.csv")
+View(summit)
+
+sum_twt = summit$text
+toks = tokens(sum_twt)
+sumtwtdfm <- dfm(toks)
+
+# Latent Semantic Analysis
+sum_lsa <- textmodel_lsa(sumtwtdfm)
+summary(sum_lsa)
+
+tweet_dfm <- tokens(sum_twt, remove_punct = TRUE) %>%
+  dfm()
+head(tweet_dfm)
+tag_dfm <- dfm_select(tweet_dfm, pattern = "#*")
+toptag <- names(topfeatures(tag_dfm, 50))
+head(toptag, 10)
+library("quanteda.textplots")
+
+# Network plot: tags
+tag_fcm <- fcm(tag_dfm)
+head(tag_fcm)
+topgat_fcm <- fcm_select(tag_fcm, pattern = toptag)
+textplot_network(topgat_fcm, min_freq = 50, edge_alpha = 0.8, edge_size = 5)
+
+# Network plot: Users
+user_dfm <- dfm_select(tweet_dfm, pattern = "@*")
+topuser <- names(topfeatures(user_dfm, 50))
+head(topuser, 20)
+user_fcm <- fcm(user_dfm)
+head(user_fcm, 20)
+user_fcm <- fcm_select(user_fcm, pattern = topuser)
+textplot_network(user_fcm, min_freq = 20, edge_color = "firebrick", edge_alpha = 0.8, edge_size = 5)
+
+
+# Wordcloud
+# based on US presidential inaugural address texts, and metadata (for the corpus), from 1789 to present.
+dfm_inaug <- corpus_subset(data_corpus_inaugural, Year <= 1826) %>% 
+  tokens(remove_punct = TRUE) %>% 
+  tokens_remove(stopwords("english")) %>% 
+  dfm() %>% 
+  dfm_trim(min_termfreq = 10, verbose = FALSE)
+
+set.seed(100)
+textplot_wordcloud(dfm_inaug)
+
+corpus_subset(data_corpus_inaugural, 
+              President %in% c("Biden","Trump", "Obama", "Bush")) %>%
+  tokens(remove_punct = TRUE) %>%
+  tokens_remove(stopwords("english")) %>%
+  dfm() %>%
+  dfm_group(groups = President) %>%
+  dfm_trim(min_termfreq = 5, verbose = FALSE) %>%
+  textplot_wordcloud(comparison = TRUE)
+
+
+textplot_wordcloud(dfm_inaug, min_count = 10,
+                   color = c('red', 'pink', 'green', 'purple', 'orange', 'blue'))
+
+
+# Locate keywords-in-context
+data_corpus_inaugural_subset <- 
+  corpus_subset(data_corpus_inaugural, Year > 1949)
+kwic(tokens(data_corpus_inaugural_subset), pattern = "american") %>%
+  textplot_xray()
+kwic(tokens(data_corpus_inaugural_subset), pattern = "trade") %>%
+  textplot_xray()
+
+
+
+
+tokens_inaugural <- tokens(data_corpus_inaugural_subset)
+textplot_xray(
+  kwic(tokens_inaugural, pattern = "american"),
+  kwic(tokens_inaugural, pattern = "people"),
+  kwic(tokens_inaugural, pattern = "trade")
+)
+
+```
+2.
+```{r}
+install.packages(c("xml2", "dplyr", "stringr", "pdftools"), repos = "https://cloud.r-project.org/")
+
+library(xml2)
+library(dplyr)
+library(stringr)
+library(pdftools)
+
+setwd("C:\\Users\\Niha\\OneDrive\\Documents\\Grad School\\nihay17.github.io\\files")
+save_dir <- "C:\\Users\\Niha\\OneDrive\\Documents\\Grad School\\nihay17.github.io\\files"
+
+# Function to parse XML files
+parse_xml <- function(file) {
+  xml_doc <- read_xml(file)
+  
+  # Extract general metadata (modify tags based on actual XML structure)
+  title <- xml_text(xml_find_first(xml_doc, "//title"))
+  date <- xml_text(xml_find_first(xml_doc, "//dateIssued | //dateCreated"))  # Check both possible date tags
+  description <- xml_text(xml_find_first(xml_doc, "//abstract | //description"))  # Some XMLs use 'abstract' or 'description'
+  
+  # Return as a list
+  list(
+    file_name = basename(file),
+    title = title,
+    date = date,
+    description = description
+  )
+}
+
+# List all XML files
+xml_files <- list.files(path = save_dir, pattern = "\\.xml$", full.names = TRUE)
+
+# Apply function to each XML file
+xml_metadata <- lapply(xml_files, parse_xml)
+
+# Convert to a data frame
+xml_metadata_df <- do.call(rbind, lapply(xml_metadata, as.data.frame))
+
+# View extracted metadata
+print(xml_metadata_df)
+
+pdf_text <- pdf_text(file.path(save_dir, "CHRG-118hhrg56735.pdf"))
+
+# View first few lines of the text
+cat(substr(pdf_text[1], 1, 1000))  # Display the first 1000 characters of page 1
+
+```
+

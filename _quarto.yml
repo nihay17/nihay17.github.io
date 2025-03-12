@@ -12,28 +12,28 @@ website:
         text: CV
       - text: Knowledge Mining
         menu:
-        - href: assignment1-km.qmd
-          text: Assignment 1
-        - href: assignment2-km.qmd
-          text: Assignment 2
-        - href: assignment3-km.qmd
-          text: Assignment 3
-        - href: assignment4-km.qmd
-          text: Assignment 4
+          - href: assignment1-km.qmd
+            text: Assignment 1
+          - href: assignment2-km.qmd
+            text: Assignment 2
+          - href: assignment3-km.qmd
+            text: Assignment 3
+          - href: assignment4-km.qmd
+            text: Assignment 4
       - text: Information Management
         menu:
-        - href: assignment1-im.qmd
-          text: Assignment 1
-        - href: assignment2-im.qmd
-          text: Assignment 2
-        - href: assignment3-im.qmd
-          text: Assignment 3
-        - href: assignment4-im.qmd
-          text: Assignment 4
-        - href: assignment5-im.qmd
-          text: Assignment 5
-        - href: assignment6-im.qmd
-          text: Assignment 6
+          - href: assignment1-im.qmd
+            text: Assignment 1
+          - href: assignment2-im.qmd
+            text: Assignment 2
+          - href: assignment3-im.qmd
+            text: Assignment 3
+          - href: assignment4-im.qmd
+            text: Assignment 4
+          - href: assignment5-im.qmd
+            text: Assignment 5
+          - href: assignment6-im.qmd
+            text: Assignment 6
 
 format:
   html:
@@ -47,4 +47,3 @@ format:
     code-summary: "Show R Code"
 
 editor: visual
-
