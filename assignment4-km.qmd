@@ -99,7 +99,10 @@ textplot_xray(
 )
 
 ```
-2.
+4.
+Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
+5.
+Wordfish is unsupervised while the scaling methods are supervised. Scaling methods require text references.
 ```{r}
 install.packages(c("xml2", "dplyr", "stringr", "pdftools"), repos = "https://cloud.r-project.org/")
 
