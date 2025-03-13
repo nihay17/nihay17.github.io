@@ -1,14 +1,12 @@
 ---
-title: "assignment4-km"
-format: html
+title: "Assignment 4-km"
+output: 
+  html_document:
+    self_contained: true
 ---
 
 1.
 ```{r}
-# Sample program for using quanteda for text modeling and analysis
-# Use vignette("auth", package = "rtweet") for authentication
-# Documentation: vignette("quickstart", package = "quanteda")
-# Website: https://quanteda.io/
 
 install.packages(c("quanteda","quanteda.textmodels","quanteda.textstats","quanteda.textplots"))
 
