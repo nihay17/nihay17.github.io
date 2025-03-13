@@ -1,7 +1,7 @@
 ---
 title: "Assignment 4-km"
-output: 
-  html_document:
+format:
+  html:
     self_contained: true
 ---
 
@@ -19,7 +19,7 @@ library(ggplot2)
 # Do some background search/study on the event
 # 
 summit <- read_csv("https://raw.githubusercontent.com/datageneration/datamethods/master/textanalytics/summit_11162021.csv")
-View(summit)
+head(summit)
 
 sum_twt = summit$text
 toks = tokens(sum_twt)
@@ -85,8 +85,6 @@ kwic(tokens(data_corpus_inaugural_subset), pattern = "american") %>%
   textplot_xray()
 kwic(tokens(data_corpus_inaugural_subset), pattern = "trade") %>%
   textplot_xray()
-
-
 
 
 tokens_inaugural <- tokens(data_corpus_inaugural_subset)

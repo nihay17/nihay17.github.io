@@ -3,47 +3,33 @@ title: "Assignment 5-im"
 format: html
 ---
 
-1.
+1.  
 
-a. A disconnected graph means that some entities are not related to the main schema. 
-b. A graph with a cycle means that some entities form a loop in relationships. 
+<!-- -->
 
-3.
+a.  A disconnected graph means that some entities are not related to the main schema.
+b.  A graph with a cycle means that some entities form a loop in relationships.
 
-While we could convert weak entity sets into strong ones, it’s not always the best choice because weak entities better represent real-world relationships and help maintain database integrity efficiently. It helps avoid data redundancy, allow natural composite keys, and they improve efficiency by saveing storage space and speeding up queries. 
+<!-- -->
+
+3.  
+
+While we could convert weak entity sets into strong ones, it’s not always the best choice because weak entities better represent real-world relationships and help maintain database integrity efficiently. It helps avoid data redundancy, allow natural composite keys, and they improve efficiency by saveing storage space and speeding up queries.
 
 4a.
 
-i.
+i.  
 
-SELECT e.ID, e.person_name
-FROM employee e
-JOIN works w ON e.ID = w.ID
-JOIN company c ON w.company_name = c.company_name
-WHERE e.city = c.city;
+SELECT e.ID, e.person_name FROM employee e JOIN works w ON e.ID = w.ID JOIN company c ON w.company_name = c.company_name WHERE e.city = c.city;
 
+ii. 
 
-ii.
+SELECT e.ID, e.person_name FROM employee e JOIN manages m ON e.ID = m.ID JOIN employee mgr ON m.manager_id = mgr.ID WHERE e.city = mgr.city AND e.street = mgr.street;
 
-SELECT e.ID, e.person_name
-FROM employee e
-JOIN manages m ON e.ID = m.ID
-JOIN employee mgr ON m.manager_id = mgr.ID
-WHERE e.city = mgr.city AND e.street = mgr.street;
+iii. 
 
-
-iii.
-
-SELECT w.ID, e.person_name
-FROM works w
-JOIN employee e ON w.ID = e.ID
-WHERE w.salary > (
-    SELECT AVG(w2.salary)
-    FROM works w2
-    WHERE w2.company_name = w.company_name
-);
-
+SELECT w.ID, e.person_name FROM works w JOIN employee e ON w.ID = e.ID WHERE w.salary \> ( SELECT AVG(w2.salary) FROM works w2 WHERE w2.company_name = w.company_name );
 
 4b.
 
-The problem is that NATURAL JOIN is used across multiple tables. This can lead to different results if the tables already share the same attributes. 
+The problem is that NATURAL JOIN is used across multiple tables. This can lead to different results if the tables already share the same attributes.
