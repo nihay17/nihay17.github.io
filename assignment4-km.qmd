@@ -99,3 +99,72 @@ textplot_xray(
 Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
 5.
 Wordfish is unsupervised while the scaling methods are supervised. Scaling methods require text references.
+
+6.
+```{r}
+## Scraping 118th Congress - Committee on Foreign Affairs
+
+# Install required packages if not already installed
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(purrr, magrittr, rjson, jsonlite, data.table, readr, dplyr)
+
+# Set working directory to where your CSV file is stored
+setwd("C:/Users/Niha/OneDrive/Documents/Grad School/nihay17.github.io/files")
+
+# Load the CSV file
+govfiles <- read.csv("govinfo-search-results-2025-03-13T22_07_34.csv", skip = 2, stringsAsFactors = FALSE)
+
+# Display column names to check correct field names
+print(colnames(govfiles))
+
+# Check values in the likely column (Congressional Hearings)
+head(govfiles$Congressional.Hearings, 10)
+
+# Filter for 118th Congress - Committee on Foreign Affairs
+govfiles_filtered <- govfiles %>%
+  filter(grepl("118th Congress", Congressional.Hearings, ignore.case = TRUE) & 
+         grepl("Committee on Foreign Affairs", Congressional.Hearings, ignore.case = TRUE))
+
+# Check the number of rows after filtering
+print(nrow(govfiles_filtered))  # Should be greater than 0 if successful
+head(govfiles_filtered)  # Preview filtered data
+
+# Extract necessary fields
+govfiles_filtered$id <- govfiles_filtered$CHRG.118hhrg52236  # Adjust column if needed
+pdf_govfiles_url <- govfiles_filtered$`https...www.govinfo.gov.content.pkg.CHRG.118hhrg52236.pdf.CHRG.118hhrg52236.pdf`
+pdf_govfiles_id <- govfiles_filtered$id
+
+# Create a directory to save the PDFs if it doesn't exist
+save_dir <- "C:/Users/Niha/OneDrive/Documents/Grad School/nihay17.github.io/files/gov_pdfs/"
+if (!dir.exists(save_dir)) dir.create(save_dir)
+
+# Function to download PDFs
+download_govfiles_pdf <- function(url, id) {
+  tryCatch({
+    destfile <- paste0(save_dir, "govfiles_", id, ".pdf")
+    download.file(url, destfile = destfile, mode = "wb")  # Binary files
+    Sys.sleep(runif(1, 1, 3))  # Random sleep to prevent request blocking
+    return(paste("Successfully downloaded:", url))
+  },
+  error = function(e) {
+    return(paste("Failed to download:", url))
+  })
+}
+
+# Download first five files for testing
+start.time <- Sys.time()
+message("Starting downloads")
+results <- 1:5 %>% 
+  purrr::map_chr(~ download_govfiles_pdf(pdf_govfiles_url[.], pdf_govfiles_id[.]))
+message("Finished downloads")
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+print(time.taken)
+
+# Print results
+print(results)
+
+
+
+```
+
