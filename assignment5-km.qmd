@@ -1,0 +1,101 @@
+---
+title: "Assignment 5"
+format: html
+---
+
+```{r}
+## NLP 1: text classification
+## Purpose: NLP workflow for text classification and prediction
+
+library(tidyverse)
+library(tidymodels)
+library(stopwords)
+library(textrecipes)
+library(workflows)
+
+# Data Ingestion and Preparation
+# Read the CSV file
+data <- read_csv("https://raw.githubusercontent.com/datageneration/knowledgemining/refs/heads/master/data/km_sample_corpus.csv")
+# Inspect the first few rows
+head(data)
+data <- data %>%
+  mutate(label = factor(label)) # For classification
+set.seed(123)  # For reproducibility
+
+# Preparing training and test data
+split <- initial_split(data, prop = 0.8, strata = label)
+train_data <- training(split)
+test_data  <- testing(split)
+
+# Text preprocessing
+rec <- recipe(label ~ text, data = train_data) %>%
+  step_tokenize(text) %>%                      # Tokenize the text
+  step_stopwords(text) %>%                     # Remove stopwords
+  step_tokenfilter(text, max_tokens = 100) %>% # Keep top 100 tokens
+  step_tfidf(text)                             # Convert to TF-IDF
+
+# Model Specification and Training
+rf_spec <- rand_forest(trees = 100) %>% # More trees can lead to a more stable model
+  set_engine("ranger") %>% # ranger is a fast implementation of random forests
+  set_mode("classification") # Good for high-dimensional feature space (e.g., TF-IDF vectors)
+
+# Preparing workflow combining preprocessing recipe and model specification.
+wf <- workflow() %>%
+  add_recipe(rec) %>%
+  add_model(rf_spec)
+
+# Model Evaluation and Prediction
+# Train the model on the training set
+rf_fit <- wf %>%
+  workflows::fit(data = train_data)
+
+rf_preds <- predict(rf_fit, new_data = test_data) %>%
+  bind_cols(test_data)
+
+# Evaluate performance
+metrics(rf_preds, truth = label, estimate = .pred_class)
+
+# Confusion matrix
+conf_mat(rf_preds, truth = label, estimate = .pred_class)
+
+# Scale the workflow
+# Try on bigger dataset (200 cases)
+
+data200 <- read_csv("https://raw.githubusercontent.com/datageneration/knowledgemining/refs/heads/master/data/km_sample_corpus_200.csv")
+data <- data200 %>%
+  mutate(label = factor(label))
+set.seed(123)  # For reproducibility
+split <- initial_split(data, prop = 0.8, strata = label)
+train_data <- training(split)
+test_data  <- testing(split)
+
+rec <- recipe(label ~ text, data = train_data) %>%
+  step_tokenize(text) %>%                      # Tokenize the text
+  step_stopwords(text) %>%                    # Remove stopwords
+  step_tokenfilter(text, max_tokens = 100) %>% # Keep top 100 tokens
+  step_tfidf(text)                             # Convert to TF-IDF
+
+rf_spec <- rand_forest(trees = 100) %>%
+  set_engine("ranger") %>%
+  set_mode("classification")
+
+wf <- workflow() %>%
+  add_recipe(rec) %>%
+  add_model(rf_spec)
+
+# Train the model on the training set
+rf_fit <- wf %>%
+  workflows::fit(data = train_data)
+
+
+rf_preds <- predict(rf_fit, new_data = test_data) %>%
+  bind_cols(test_data)
+
+# Evaluate performance
+metrics(rf_preds, truth = label, estimate = .pred_class)
+
+# Confusion matrix
+conf_mat(rf_preds, truth = label, estimate = .pred_class)
+
+```
+
