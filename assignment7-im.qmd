@@ -1,6 +1,7 @@
 ---
 title: "Assignment 7 -im"
 format: html
+runtime: shiny
 ---
 
 ```{r}
