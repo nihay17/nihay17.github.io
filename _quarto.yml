@@ -38,6 +38,8 @@ website:
             text: Assignment 6
           - href: assignment7-im.qmd
             text: Assignment 7
+          - href: final-im.qmd
+            text: Final Project
 
 format:
   html:

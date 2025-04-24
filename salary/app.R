@@ -18,7 +18,7 @@ server <- function(input, output, session) {
   con <- dbConnect(
     RPostgres::Postgres(),
     dbname   = "university",   # Adjust if your database name differs
-    host     = "localhost",
+    host     = "127.0.0.1",
     port     = 5432,           # Default PostgreSQL port
     user     = "postgres",     # Your PostgreSQL username
     password = "life123$" # Your PostgreSQL password

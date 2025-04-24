@@ -6,8 +6,6 @@ runtime: shiny
 
 Assigment 7 Labs 1 and 2
 
-Instructor Salaries App
-<iframe src="https://nihay17.shinyapps.io/salary/" width="800" height="600"></iframe>
+Instructor Salaries App <iframe src="https://nihay17.shinyapps.io/salary/" width="800" height="600"></iframe>
 
-Geyser Data App
-<iframe src="https://nihay17.shinyapps.io/geyser/" width="800" height="600"></iframe>
+Geyser Data App <iframe src="https://nihay17.shinyapps.io/geyser/" width="800" height="600"></iframe>
