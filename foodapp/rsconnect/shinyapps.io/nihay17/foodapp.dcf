@@ -4,8 +4,8 @@ username: nihay17
 account: nihay17
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 14599453
-bundleId: 10168488
+appId: 14657303
+bundleId: 10210550
 url: https://nihay17.shinyapps.io/foodapp/
 version: 1
 asMultiple: FALSE

@@ -1,75 +1,86 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    https://shiny.posit.co/
-#
-
 library(shiny)
 library(ggplot2)
+library(readr)
 library(dplyr)
-library(DBI)
-library(RPostgres)
 library(tidyr)
 
-sidebarPanel(
-  actionButton("select_all", "Select All Counties"),
-  selectInput("selected_counties", "Select Counties:", choices = NULL, multiple = TRUE)
+# Load CSV file
+food_data <- read_csv("Food Insecurity Dataset.csv", show_col_types = FALSE)
+
+# Reshape data for plotting
+food_data_long <- pivot_longer(food_data, cols = c("2019", "2020", "2021", "2022"), 
+                               names_to = "year", values_to = "food_insecurity")
+
+# Filter out any potential NA values in county names
+valid_counties <- food_data_long %>%
+  filter(!is.na(`County Name`)) %>%
+  pull(`County Name`) %>% unique()
+
+# UI
+ui <- fluidPage(
+  titlePanel("Food Insecurity in Texas Counties"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      actionButton("select_all", "Select All Counties"),  # Button to select all
+      actionButton("clear_all", "Clear All Counties"),    # Button to clear selection
+      
+      checkboxGroupInput("selected_counties", "Select Counties:", 
+                         choices = valid_counties, 
+                         selected = valid_counties),  # Removes NA
+      
+      sliderInput("selected_years", "Select Year Range:", 
+                  min = 2019, max = 2022, value = c(2019, 2022), step = 1, sep = "")
+    ),
+    
+    mainPanel(
+      plotOutput("linePlot")
+    )
+  )
 )
 
+# Server
 server <- function(input, output, session) {
   
-  # Connect to PostgreSQL database
-  con <- dbConnect(
-    RPostgres::Postgres(),
-    dbname   = "food",
-    host     = "127.0.0.1",
-    port     = 5432,
-    user     = "postgres",
-    password = "life123$"
-  )
-  
-  # Retrieve county names for dropdown
-  counties <- dbGetQuery(con, "SELECT DISTINCT \"County_Name\" FROM \"Texas_Counties\"")
-  updateSelectInput(session, "selected_counties", choices = counties$County_Name)
-  
-  # Observe "Select All" button click
+  # Update selection based on button clicks
   observeEvent(input$select_all, {
-    updateSelectInput(session, "selected_counties", selected = counties$County_Name)
+    updateCheckboxGroupInput(session, "selected_counties",
+                             choices = valid_counties,
+                             selected = valid_counties)
   })
   
-  # Fetch filtered data based on selection
-  county_data <- reactive({
-    req(input$selected_counties)
-    query <- sprintf("SELECT * FROM \"Texas_Counties\" WHERE \"County_Name\" IN ('%s')",
-                     paste(input$selected_counties, collapse = "', '"))
-    
-    dbGetQuery(con, query) %>%
-      pivot_longer(cols = c("2019", "2020", "2021", "2022"), 
-                   names_to = "Year", values_to = "Food_Insecurity") %>%
-      mutate(Year = as.numeric(Year))
+  observeEvent(input$clear_all, {
+    updateCheckboxGroupInput(session, "selected_counties", choices = valid_counties, selected = NULL)
   })
   
-  # Render line plot
-  output$insecurityPlot <- renderPlot({
-    data <- county_data()
+  # Filter data based on user selection
+  filtered_data <- reactive({
+    food_data_long %>%
+      filter(`County Name` %in% input$selected_counties,
+             as.numeric(year) >= input$selected_years[1],
+             as.numeric(year) <= input$selected_years[2])
+  })
+  
+  output$linePlot <- renderPlot({
+    # Get the last selected year dynamically
+    latest_year <- max(as.numeric(input$selected_years))  
     
-    ggplot(data, aes(x = Year, y = Food_Insecurity, color = County_Name)) +
-      geom_line(size = 1) +
+    ggplot(filtered_data(), aes(x = as.numeric(year), y = food_insecurity, color = `County Name`)) +
+      geom_line(linewidth = 1) +
       geom_point(size = 2) +
-      labs(title = "Food Insecurity Rates Over Time",
-           x = "Year", y = "Food Insecurity (%)") +
-      theme_minimal()
-  })
-  
-  # Close DB connection when session ends
-  session$onSessionEnded(function() {
-    dbDisconnect(con)
+      geom_text(data = filtered_data() %>% filter(year == latest_year),  # Label at last selected year
+                aes(label = `County Name`), hjust = -0.2, size = 3, check_overlap = TRUE) +
+      labs(title = "Food Insecurity Trends in Texas Counties",
+           x = "Year", y = "Food Insecurity (%)",
+           color = "County") +
+      theme_minimal() +
+      theme(
+        legend.position = "bottom",  # Moves legend below the graph
+        legend.title = element_blank(),  # Removes legend title
+        legend.text = element_text(size = 10)  # Adjust legend text size
+      )
   })
 }
 
-
-# Run the application 
+# Run the app
 shinyApp(ui = ui, server = server)
