@@ -22,6 +22,8 @@ website:
             text: Assignment 4
           - href: assignment5-km.qmd
             text: Assignment 5
+          - href: KM-Project.qmd
+            text: KM Project
       - text: Information Management
         menu:
           - href: assignment1-im.qmd
