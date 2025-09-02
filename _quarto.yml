@@ -10,6 +10,7 @@ website:
         text: Home
       - href: files/NihaYadavCV.pdf
         text: CV
+      - text: Data Visualization
       - text: Knowledge Mining
         menu:
           - href: assignment1-km.qmd
@@ -42,7 +43,6 @@ website:
             text: Assignment 7
           - href: final-im.qmd
             text: Final Project
-      - text: Data Visualization
 format:
   html:
     theme:
