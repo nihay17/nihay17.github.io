@@ -27,6 +27,26 @@ CREATE TABLE texas_2022 (
     food_insecurity REAL
 );
 
+CREATE TABLE Demographics (
+    demographic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    county_id INTEGER NOT NULL,
+    age_group TEXT NOT NULL,
+    gender TEXT NOT NULL,
+    race TEXT NOT NULL,
+    average_salary REAL,
+    FOREIGN KEY (county_id) REFERENCES Counties(county_id)
+);
+
+CREATE TABLE Food_Insecurity (
+    insecurity_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    county_id INTEGER NOT NULL,
+    demographic_id INTEGER,  
+    year INTEGER NOT NULL,
+    percentage REAL NOT NULL,
+    FOREIGN KEY (county_id) REFERENCES Counties(county_id),
+    FOREIGN KEY (demographic_id) REFERENCES Demographics(demographic_id)
+);
+
 
 INSERT INTO Texas_Counties (County_Name, "2019", "2020", "2021", "2022") VALUES
 ('Harris', 16.4, 13.8, 14.9, 13.9),
