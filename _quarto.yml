@@ -42,7 +42,7 @@ website:
             text: Assignment 7
           - href: final-im.qmd
             text: Final Project
-        - text: Data Visualization
+      - text: Data Visualization
         menu:
           - href: assignment1-dv.qmd
             text: Assignment 1
