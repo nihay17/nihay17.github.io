@@ -43,13 +43,6 @@ website:
           - href: final-im.qmd
             text: Final Project
       - text: Data Visualization
-        menu:
-          - href: assignment1-dv.qmd
-            text: Assignment 1
-          - href: assignment2-dv.qmd
-            text: Assignment 2
-          - href: assignment3-dv.qmd
-            text: Assignment 3
 format:
   html:
     theme:
