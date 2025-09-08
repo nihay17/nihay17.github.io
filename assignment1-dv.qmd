@@ -1,7 +1,9 @@
 ---
-title: "assignment1-dv"
+title: "Assignment 1- Data Visualization"
 format: html
 ---
-Assignment 1 
 
+Assignment 1
+================  
 
+This is my website create using Quarto. I decided to use the theme simplex. The navigation bar includes links to my assignments from previous classes and my resume. 
