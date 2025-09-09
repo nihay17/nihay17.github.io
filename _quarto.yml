@@ -12,6 +12,8 @@ website:
         text: CV
       - text: Data Visualization
         menu:
+          - href: dataframe.qmd
+            text: Dataframe Reviews
           - href: assignment1-dv.qmd
             text: Assignment 1
           - href: assignment2-dv.qmd
