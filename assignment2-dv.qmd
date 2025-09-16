@@ -1,9 +1,11 @@
 ---
-title: "assignment2-dv"
+title: "Assignment 2-Data Visualization"
 format: html
 ---
 
 Assignment 2
+
+Google Trends Data
 
 ```{r}
 ## EPPS 6302 Methods of Data Collection and Production
