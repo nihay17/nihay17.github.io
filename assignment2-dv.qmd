@@ -1,6 +1,7 @@
 ---
 title: "Assignment 2-Data Visualization"
 format: html
+editor: visual
 ---
 
 Assignment 2
@@ -13,19 +14,39 @@ Google Trends Data
 
 install.packages("gtrendsR")
 library(gtrendsR)
-TrumpHarrisElection = gtrends(c("Trump","Harris","election"), onlyInterest = TRUE, geo = "US", gprop = "web", time = "today+5-y", category = 0, ) # last five years
-the_df=TrumpHarrisElection$interest_over_time
-plot(TrumpHarrisElection)
-tg = gtrends("tariff", time = "all")
 
-# Example: Tariff, China military, Taiwan 
-# 
-plot(gtrends(c("tariff"), time = "all"))
-data("countries")
-plot(gtrends(c("tariff"), geo = "GB", time = "all")) 
-plot(gtrends(c("tariff"), geo = c("US","GB","TW"), time = "all")) 
-tg_iot = tg$interest_over_time
-tct = gtrends(c("tariff","China military", "Taiwan"), time = "all")
-tct = data.frame(tct$interest_over_time)
-plot(gtrends(c("tariff","China military", "Taiwan"), time = "all"))
+# First query
+TrumpHarrisElection <- gtrends(c("Trump", "Harris", "election"),
+                               onlyInterest = TRUE,
+                               geo = "US",
+                               gprop = "web",
+                               time = "today 12-m")  # Shorter time range
+Sys.sleep(10)
+
+the_df <- TrumpHarrisElection$interest_over_time
+plot(TrumpHarrisElection)
+
+# Second query
+tg <- gtrends("tariff", time = "today 12-m")
+Sys.sleep(10)
+
+# Third query
+plot(gtrends("tariff", time = "today 12-m"))
+Sys.sleep(10)
+
+# Fourth query
+plot(gtrends("tariff", geo = "GB", time = "today 12-m"))
+Sys.sleep(10)
+
+# Fifth query
+plot(gtrends("tariff", geo = c("US", "GB", "TW"), time = "today 12-m"))
+Sys.sleep(10)
+
+# Sixth query
+tg_iot <- tg$interest_over_time
+tct <- gtrends(c("tariff", "China military", "Taiwan"), time = "today 12-m")
+Sys.sleep(10)
+
+tct <- data.frame(tct$interest_over_time)
+plot(gtrends(c("tariff", "China military", "Taiwan"), time = "today 12-m"))
 ```
