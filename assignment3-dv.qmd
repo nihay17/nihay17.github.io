@@ -1,6 +1,57 @@
 ---
-title: "assignment3-dv"
+title: "Assignment 3"
 format: html
 ---
 
-Assignment 3
+Assignment 3 - Mapping Census Data
+
+
+```{r}
+library(tidycensus)
+library(tigris)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+census_api_key("3bf1373ff0342dba5c6802db780897d0af31db3d", install = FALSE)
+readRenviron("~/.Renviron")  # Reload environment
+
+# Get ACS data 
+income_tx <- get_acs(
+  geography = "county",
+  state = "TX",
+  variables = "B19013_001",  # Median household income
+  year = 2023,
+  geometry = TRUE
+)
+
+# Plot the map
+ggplot(income_tx, aes(fill = estimate)) +
+  geom_sf(color = "white", size = 0.1) +
+  scale_fill_viridis_c(option = "plasma", name = "Median Income ($)") +
+  labs(
+    title = "Median Household Income by County in Texas (ACS 2023)",
+    caption = "Source: U.S. Census Bureau, ACS 5-Year Estimates"
+  ) +
+  theme_minimal()
+
+# Get population data
+pop_tx <- get_acs(
+  geography = "county",
+  state = "TX",
+  variables = "B01003_001",  # Total population
+  year = 2023
+)
+
+# Top 10 counties
+top10_pop <- pop_tx %>%
+  arrange(desc(estimate)) %>%
+  slice_head(n = 10) %>%
+  select(NAME, estimate)
+
+# View table
+print(top10_pop)
+
+```
+The map shows the median income of counties in Texas, with darker colors indicating higher income levels. The table lists the top 10 most populous counties in Texas based on the 2023 ACS data.
