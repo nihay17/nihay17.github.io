@@ -1,0 +1,71 @@
+---
+title: "Assignment 4- Data Visualization"
+format: html
+---
+A.
+
+```{r}
+# Load required libraries
+library(tidyverse)
+library(rvest)
+library(stringr)
+
+# Define a reusable function to scrape a specific table from a Wikipedia page
+scrape_wiki_table <- function(url, table_index = 1, clean_dates = FALSE) {
+  # Read the HTML content
+  page <- read_html(url)
+  
+  # Extract all tables
+  tables <- page %>% html_nodes("table") %>% html_table(fill = TRUE)
+  
+  # Check if the requested table index exists
+  if (table_index > length(tables)) {
+    stop("Requested table index exceeds number of tables found.")
+  }
+  
+  # Extract the desired table
+  table <- tables[[table_index]]
+  
+  # Optional: Clean up date column if present
+  if (clean_dates && "Date" %in% colnames(table)) {
+    table$newdate <- str_split_fixed(table$Date, "\\[", n = 2)[, 1]
+    table$newdate <- trimws(table$newdate)
+  }
+  
+  return(table)
+}
+
+url1 <- "https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves"
+forex_table <- scrape_wiki_table(url1, table_index = 1, clean_dates = TRUE)
+
+# Rename columns (adjust as needed)
+names(forex_table) <- c("Rank", "Country", "Forexres", "Date", "Change", "Sources")
+
+# View top rows
+head(forex_table)
+
+```
+
+B.
+```{r}
+clean_data <- forex_table[-c(1, 2), ] %>%
+  select(Country, Forexres, Date) %>%
+  mutate(
+    Country = str_remove(trimws(Country), "\\[.*\\]"),
+    Forexres = as.numeric(gsub(",", "", Forexres)),
+    Date = str_split_fixed(Date, "\\[", 2)[, 1] %>% trimws()
+  )
+```
+C. 
+1. Define the research objectives
+2. Identify Data Sources
+3. Assess Accessability and Permissions
+4. Design Scraping Logic
+5. Clean and Validate Data
+6. Store Data
+7. Analyze and Visualize Data
+8. Monitor and Maintain
+9. Document the Process
+10. Ensure Ethical Compliance
+11. Review and Iterate
+12. Integrate with Analysis pipeline
