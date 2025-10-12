@@ -2,7 +2,8 @@
 title: "Assignment 4- Data Visualization"
 format: html
 ---
-A.
+
+A.  
 
 ```{r}
 # Load required libraries
@@ -46,7 +47,8 @@ head(forex_table)
 
 ```
 
-B.
+B.  
+
 ```{r}
 clean_data <- forex_table[-c(1, 2), ] %>%
   select(Country, Forexres, Date) %>%
@@ -56,16 +58,20 @@ clean_data <- forex_table[-c(1, 2), ] %>%
     Date = str_split_fixed(Date, "\\[", 2)[, 1] %>% trimws()
   )
 ```
-C. 
-1. Define the research objectives
-2. Identify Data Sources
-3. Assess Accessability and Permissions
-4. Design Scraping Logic
-5. Clean and Validate Data
-6. Store Data
-7. Analyze and Visualize Data
-8. Monitor and Maintain
-9. Document the Process
+
+C.  
+
+<!-- -->
+
+1.  Define the research objectives
+2.  Identify Data Sources
+3.  Assess Accessability and Permissions
+4.  Design Scraping Logic
+5.  Clean and Validate Data
+6.  Store Data
+7.  Analyze and Visualize Data
+8.  Monitor and Maintain
+9.  Document the Process
 10. Ensure Ethical Compliance
 11. Review and Iterate
 12. Integrate with Analysis pipeline

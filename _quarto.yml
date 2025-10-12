@@ -22,6 +22,8 @@ website:
             text: Assignment 3
           - href: assignment4-dv.qmd
             text: Assignment 4
+          - href: assignment5-dv.qmd
+            text: Assignment 5
       - text: Knowledge Mining
         menu:
           - href: assignment1-km.qmd

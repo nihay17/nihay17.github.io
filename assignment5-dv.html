@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 4- Data Visualization – Niha Yadav</title>
+<title>assignment5-dv – Niha Yadav</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 4- Data Visualization</h1>
+<h1 class="title">assignment5-dv</h1>
 </div>
 
 
@@ -267,131 +267,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<ol type="A">
-<li></li>
-</ol>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Scraping Government data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Website: GovInfo (https://www.govinfo.gov/app/search/)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Prerequisite: Download from website the list of files to be downloaded</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Designed for background job</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Start with a clean plate and lean loading to save memory</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>(<span class="at">reset=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   4.0.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>          used (Mb) gc trigger (Mb) max used (Mb)
+Ncells  826170 44.2    1585462 84.7   826170 44.2
+Vcells 1634173 12.5    8388608 64.0  1634173 12.5</code></pre>
 </div>
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("purrr", "magrittr")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># Alternatively, load tidyverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attaching package: 'rvest'
+Attaching package: 'magrittr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
 
-The following object is masked from 'package:readr':
-
-    guess_encoding</code></pre>
+    set_names</code></pre>
 </div>
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a reusable function to scrape a specific table from a Wikipedia page</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>scrape_wiki_table <span class="ot">&lt;-</span> <span class="cf">function</span>(url, <span class="at">table_index =</span> <span class="dv">1</span>, <span class="at">clean_dates =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the HTML content</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract all tables</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  tables <span class="ot">&lt;-</span> page <span class="sc">%&gt;%</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>) <span class="sc">%&gt;%</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the requested table index exists</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (table_index <span class="sc">&gt;</span> <span class="fu">length</span>(tables)) {</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Requested table index exceeds number of tables found."</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract the desired table</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  table <span class="ot">&lt;-</span> tables[[table_index]]</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Optional: Clean up date column if present</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (clean_dates <span class="sc">&amp;&amp;</span> <span class="st">"Date"</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(table)) {</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    table<span class="sc">$</span>newdate <span class="ot">&lt;-</span> <span class="fu">str_split_fixed</span>(table<span class="sc">$</span>Date, <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="at">n =</span> <span class="dv">2</span>)[, <span class="dv">1</span>]</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    table<span class="sc">$</span>newdate <span class="ot">&lt;-</span> <span class="fu">trimws</span>(table<span class="sc">$</span>newdate)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(table)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>url1 <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves"</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>forex_table <span class="ot">&lt;-</span> <span class="fu">scrape_wiki_table</span>(url1, <span class="at">table_index =</span> <span class="dv">1</span>, <span class="at">clean_dates =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns (adjust as needed)</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(forex_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Rank"</span>, <span class="st">"Country"</span>, <span class="st">"Forexres"</span>, <span class="st">"Date"</span>, <span class="st">"Change"</span>, <span class="st">"Sources"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set path for reading the listing and home directory</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Niha</span><span class="sc">\\</span><span class="st">OneDrive</span><span class="sc">\\</span><span class="st">Documents</span><span class="sc">\\</span><span class="st">Grad School</span><span class="sc">\\</span><span class="st">nihay17.github.io</span><span class="sc">\\</span><span class="st">files"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rjson)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `value` argument of `names&lt;-()` must have the same length as `x` as of
-tibble 3.0.0.</code></pre>
+<pre><code>
+Attaching package: 'jsonlite'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `value` argument of `names&lt;-()` can't be empty as of tibble 3.0.0.</code></pre>
+<pre><code>The following objects are masked from 'package:rjson':
+
+    fromJSON, toJSON</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    flatten</code></pre>
 </div>
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View top rows</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(forex_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'data.table'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    transpose</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## CSV method</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>govfiles<span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_10_42.csv"</span>, <span class="at">skip=</span><span class="dv">2</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">## JSON method</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">### rjson</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>gf_list <span class="ot">&lt;-</span> rjson<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="at">file =</span><span class="st">"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_18_29.json"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>govfile2<span class="ot">=</span>dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(gf_list<span class="sc">$</span>resultSet)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">### jsonlite</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>gf_list1 <span class="ot">=</span> jsonlite<span class="sc">::</span><span class="fu">read_json</span>(<span class="st">"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_18_29.json"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">### Extract the list</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>govfiles3 <span class="ot">&lt;-</span> gf_list1<span class="sc">$</span>resultSet</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="do">### One more step</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>govfiles3 <span class="ot">&lt;-</span> gf_list1<span class="sc">$</span>resultSet <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparing for bulk download of government documents</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>govfiles<span class="sc">$</span>id <span class="ot">=</span> govfiles<span class="sc">$</span>packageId</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>pdf_govfiles_url <span class="ot">=</span> govfiles3<span class="sc">$</span>pdfLink</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>pdf_govfiles_id <span class="ot">&lt;-</span> govfiles3<span class="sc">$</span>index</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Directory to save the pdf's</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Be sure to create a folder for storing the pdf's</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>save_dir <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Niha</span><span class="sc">\\</span><span class="st">OneDrive</span><span class="sc">\\</span><span class="st">Documents</span><span class="sc">\\</span><span class="st">Grad School</span><span class="sc">\\</span><span class="st">nihay17.github.io</span><span class="sc">\\</span><span class="st">files"</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to download pdfs</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>download_govfiles_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(url, id) {</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    destfile <span class="ot">&lt;-</span> <span class="fu">paste0</span>(save_dir, <span class="st">"govfiles_"</span>, id, <span class="st">".pdf"</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">download.file</span>(url, <span class="at">destfile =</span> destfile, <span class="at">mode =</span> <span class="st">"wb"</span>) <span class="co"># Binary files</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>))  <span class="co"># Important: random sleep between 1 and 3 seconds to avoid suspicion of "hacking" the server</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(<span class="st">"Successfully downloaded:"</span>, url))</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">paste</span>(<span class="st">"Failed to download:"</span>, url))</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Try ten</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Starting downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Starting downloads</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="sc">~</span> <span class="fu">download_govfiles_pdf</span>(pdf_govfiles_url[.], pdf_govfiles_id[.]))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Finished downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finished downloads</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>time.taken <span class="ot">&lt;-</span> end.time <span class="sc">-</span> start.time</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>time.taken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  Rank                         Country Forexres Date  Change Sources ``    ``   
-  &lt;chr&gt;                        &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
-1 Country(as recognized by th… Contin… Includi… Incl… Exclu… Exclud… Last… Ref. 
-2 Country(as recognized by th… Contin… million… Chan… milli… Change  Last… Ref. 
-3 China                        Asia    3,643,1… 41,0… 3,389… 31,221  31 A… [3]  
-4 Japan                        Asia    1,324,2… 19,7… 1,230… 16,230  31 A… [4]  
-5 Switzerland                  Europe  1,007,7… 13,9… 897,2… 14,490  31 J… [5]  
-6 Russia                       Europe… 713,300  700   434,4… 1,517   26 S… [6]  </code></pre>
+<pre><code>Time difference of 27.57344 secs</code></pre>
 </div>
-</div>
-<ol start="2" type="A">
-<li></li>
-</ol>
-<div class="cell">
 <details class="code-fold">
 <summary>Show R Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> forex_table[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), ] <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country, Forexres, Date) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Country =</span> <span class="fu">str_remove</span>(<span class="fu">trimws</span>(Country), <span class="st">"</span><span class="sc">\\</span><span class="st">[.*</span><span class="sc">\\</span><span class="st">]"</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Forexres =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Forexres)),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">str_split_fixed</span>(Date, <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="dv">2</span>)[, <span class="dv">1</span>] <span class="sc">%&gt;%</span> <span class="fu">trimws</span>()</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sres890is/pdf/BILLS-118sres890is.pdf"        
+ [2] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sjres114is/pdf/BILLS-118sjres114is.pdf"      
+ [3] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sres805ats/pdf/BILLS-118sres805ats.pdf"      
+ [4] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sjres115is/pdf/BILLS-118sjres115is.pdf"      
+ [5] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sjres113is/pdf/BILLS-118sjres113is.pdf"      
+ [6] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sjres111is/pdf/BILLS-118sjres111is.pdf"      
+ [7] "Successfully downloaded: https://www.govinfo.gov/content/pkg/BILLS-118sjres112is/pdf/BILLS-118sjres112is.pdf"      
+ [8] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CREC-2024-09-25/pdf/CREC-2024-09-25-pt1-PgD951.pdf"   
+ [9] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CREC-2024-09-25/pdf/CREC-2024-09-25-pt1-PgS6417-2.pdf"
+[10] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CREC-2024-09-25/pdf/CREC-2024-09-25-pt1-PgS6418.pdf"  </code></pre>
 </div>
-<ol start="3" type="A">
-<li></li>
-</ol>
-<!-- -->
-<ol type="1">
-<li>Define the research objectives</li>
-<li>Identify Data Sources</li>
-<li>Assess Accessability and Permissions</li>
-<li>Design Scraping Logic</li>
-<li>Clean and Validate Data</li>
-<li>Store Data</li>
-<li>Analyze and Visualize Data</li>
-<li>Monitor and Maintain</li>
-<li>Document the Process</li>
-<li>Ensure Ethical Compliance</li>
-<li>Review and Iterate</li>
-<li>Integrate with Analysis pipeline</li>
-</ol>
+</div>
+<p>The above code can be modified to download all files by changing the 1:10 to 1:length(pdf_govfiles_url). Because of this the scraped data can be useable but since it updates frequently it can be improved by using an API from the government website. I had to stop downloads at 10 because it ook up alot of storage and time. The code can be improved by adding a progress bar to show the progress of the downloads. Additionally, error handling can be added to retry failed downloads or log them for later review.</p>
 
 
 
