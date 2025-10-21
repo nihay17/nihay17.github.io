@@ -4203,6 +4203,33 @@
       "Maintainer": "Brian Ripley <ripley@stats.ox.ac.uk>",
       "Repository": "CRAN"
     },
+    "nsyllable": {
+      "Package": "nsyllable",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Title": "Count Syllables in Character Vectors",
+      "Description": "Counts syllables in character vectors for English words.  Imputes syllables as the number of vowel sequences for words not found.",
+      "Authors@R": "c(  person(\"Kenneth\", \"Benoit\", email = \"kbenoit@lse.ac.uk\", role = c(\"cre\", \"aut\", \"cph\"), comment = c(ORCID = \"0000-0002-0797-564X\")), person(\"Carnegie Mellon University\", email = \"air+cmudict@cs.cmu.edu\", role = \"cph\", comment = \"CMU Pronunciation Dictionary (c) 1993-2015\") )",
+      "License": "GPL-3",
+      "Depends": [
+        "R (>= 2.10)"
+      ],
+      "Suggests": [
+        "knitr",
+        "testthat",
+        "spelling"
+      ],
+      "URL": "https://github.com/quanteda/nsyllable",
+      "Encoding": "UTF-8",
+      "BugReports": "https://github.com/quanteda/nsyllable/issues",
+      "LazyData": "TRUE",
+      "Language": "en-GB",
+      "RoxygenNote": "7.1.2",
+      "NeedsCompilation": "no",
+      "Author": "Kenneth Benoit [cre, aut, cph] (<https://orcid.org/0000-0002-0797-564X>), Carnegie Mellon University [cph] (CMU Pronunciation Dictionary (c) 1993-2015)",
+      "Maintainer": "Kenneth Benoit <kbenoit@lse.ac.uk>",
+      "Repository": "CRAN"
+    },
     "numDeriv": {
       "Package": "numDeriv",
       "Version": "2016.8-1.1",
@@ -4879,6 +4906,44 @@
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
+    "proxyC": {
+      "Package": "proxyC",
+      "Version": "0.4.1",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Computes Proximity in Large Sparse Matrices",
+      "Authors@R": "c( person(\"Kohei\", \"Watanabe\", email = \"watanabe.kohei@gmail.com\", role = c(\"cre\", \"aut\", \"cph\"),  comment = c(ORCID = \"0000-0001-6519-5265\")), person(\"Robrecht\", \"Cannoodt\", email = \"rcannood@gmail.com\", role = c(\"aut\"), comment = c(ORCID = \"0000-0003-3641-729X\")) )",
+      "Description": "Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast.",
+      "URL": "https://github.com/koheiw/proxyC",
+      "BugReports": "https://github.com/koheiw/proxyC/issues",
+      "License": "GPL-3",
+      "Depends": [
+        "R (>= 3.1.0)",
+        "methods"
+      ],
+      "Imports": [
+        "Matrix (>= 1.2)",
+        "Rcpp (>= 0.12.12)"
+      ],
+      "Suggests": [
+        "testthat",
+        "entropy",
+        "proxy",
+        "knitr",
+        "rmarkdown"
+      ],
+      "LinkingTo": [
+        "Rcpp",
+        "RcppArmadillo (>= 0.7.600.1.0)"
+      ],
+      "NeedsCompilation": "yes",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.1",
+      "VignetteBuilder": "knitr",
+      "Author": "Kohei Watanabe [cre, aut, cph] (<https://orcid.org/0000-0001-6519-5265>), Robrecht Cannoodt [aut] (<https://orcid.org/0000-0003-3641-729X>)",
+      "Maintainer": "Kohei Watanabe <watanabe.kohei@gmail.com>",
+      "Repository": "CRAN"
+    },
     "ps": {
       "Package": "ps",
       "Version": "1.9.0",
@@ -5121,6 +5186,53 @@
       "RoxygenNote": "7.3.2",
       "NeedsCompilation": "yes",
       "Author": "Kenneth Benoit [cre, aut, cph] (<https://orcid.org/0000-0002-0797-564X>), Kohei Watanabe [aut] (<https://orcid.org/0000-0001-6519-5265>), Haiyan Wang [aut] (<https://orcid.org/0000-0003-4992-4311>), Adam Obeng [aut] (<https://orcid.org/0000-0002-2906-4775>), Stefan Müller [aut] (<https://orcid.org/0000-0002-6315-4125>), Akitaka Matsuo [aut] (<https://orcid.org/0000-0002-3323-6330>), Ian Fellows [cph] (authored wordcloud C source code (modified)), European Research Council [fnd] (ERC-2011-StG 283794-QUANTESS)",
+      "Maintainer": "Kenneth Benoit <kbenoit@lse.ac.uk>",
+      "Repository": "CRAN"
+    },
+    "quanteda.textstats": {
+      "Package": "quanteda.textstats",
+      "Version": "0.97.2",
+      "Source": "Repository",
+      "Title": "Textual Statistics for the Quantitative Analysis of Textual Data",
+      "Description": "Textual statistics functions formerly in the 'quanteda' package. Textual statistics for characterizing and comparing textual data. Includes  functions for measuring term and document frequency, the co-occurrence of  words, similarity and distance between features and documents, feature entropy,  keyword occurrence, readability, and lexical diversity.  These functions  extend the 'quanteda' package and are specially designed for sparse textual data.",
+      "Authors@R": "c(  person(\"Kenneth\", \"Benoit\", email = \"kbenoit@lse.ac.uk\", role = c(\"cre\", \"aut\", \"cph\"), comment = c(ORCID = \"0000-0002-0797-564X\")),  person(\"Kohei\", \"Watanabe\", email = \"watanabe.kohei@gmail.com\", role = \"aut\", comment = c(ORCID = \"0000-0001-6519-5265\")),  person(\"Haiyan\", \"Wang\", email = \"whyinsa@yahoo.com\", role = \"aut\", comment = c(ORCID = \"0000-0003-4992-4311\")), person(\"Jiong Wei\", \"Lua\", email = \"J.W.Lua@lse.ac.uk\", role = \"aut\"), person(\"Jouni\", \"Kuha\", email = \"j.kuha@lse.ac.uk\", role = \"aut\", comment = c(ORCID = \"0000-0002-1156-8465\")), person(\"European Research Council\", role = \"fnd\", comment = \"ERC-2011-StG 283794-QUANTESS\") )",
+      "License": "GPL-3",
+      "Depends": [
+        "R (>= 3.5.0)"
+      ],
+      "Imports": [
+        "quanteda (>= 4.0.0)",
+        "Matrix (>= 1.5-0)",
+        "methods",
+        "nsyllable",
+        "proxyC (>= 0.1.4)",
+        "Rcpp (>= 0.12.12)",
+        "stringi"
+      ],
+      "LinkingTo": [
+        "Rcpp",
+        "RcppArmadillo (>= 0.7.600.1.0)",
+        "quanteda"
+      ],
+      "Suggests": [
+        "entropy",
+        "ExPosition",
+        "proxy",
+        "rmarkdown",
+        "spelling",
+        "svs",
+        "testthat",
+        "knitr",
+        "covr"
+      ],
+      "URL": "https://quanteda.io",
+      "Encoding": "UTF-8",
+      "BugReports": "https://github.com/quanteda/quanteda.textstats/issues",
+      "LazyData": "TRUE",
+      "Language": "en-GB",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "yes",
+      "Author": "Kenneth Benoit [cre, aut, cph] (<https://orcid.org/0000-0002-0797-564X>), Kohei Watanabe [aut] (<https://orcid.org/0000-0001-6519-5265>), Haiyan Wang [aut] (<https://orcid.org/0000-0003-4992-4311>), Jiong Wei Lua [aut], Jouni Kuha [aut] (<https://orcid.org/0000-0002-1156-8465>), European Research Council [fnd] (ERC-2011-StG 283794-QUANTESS)",
       "Maintainer": "Kenneth Benoit <kbenoit@lse.ac.uk>",
       "Repository": "CRAN"
     },
@@ -6597,11 +6709,11 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.2.1",
+      "Version": "1.3.1",
       "Source": "Repository",
       "Type": "Package",
       "Title": "System Native Font Finding",
-      "Authors@R": "c( person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-5147-4711\")), person(\"Jeroen\", \"Ooms\", , \"jeroen@berkeley.edu\", role = \"aut\", comment = c(ORCID = \"0000-0002-4035-0289\")), person(\"Devon\", \"Govett\", role = \"aut\", comment = \"Author of font-manager\"), person(\"Posit, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Authors@R": "c( person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-5147-4711\")), person(\"Jeroen\", \"Ooms\", , \"jeroen@berkeley.edu\", role = \"aut\", comment = c(ORCID = \"0000-0002-4035-0289\")), person(\"Devon\", \"Govett\", role = \"aut\", comment = \"Author of font-manager\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"), comment = c(ROR = \"03wc8by49\")) )",
       "Description": "Provides system native access to the font catalogue. As font handling varies between systems it is difficult to correctly locate installed fonts across different operating systems. The 'systemfonts' package provides bindings to the native libraries on Windows, macOS and Linux for finding font files that can then be used further by e.g. graphic devices. The main use is intended to be from compiled code but 'systemfonts' also provides access from R.",
       "License": "MIT + file LICENSE",
       "URL": "https://github.com/r-lib/systemfonts, https://systemfonts.r-lib.org",
@@ -6609,32 +6721,37 @@
       "Depends": [
         "R (>= 3.2.0)"
       ],
-      "Suggests": [
-        "covr",
-        "farver",
-        "graphics",
-        "knitr",
-        "rmarkdown",
-        "testthat (>= 2.1.0)"
-      ],
-      "LinkingTo": [
-        "cpp11 (>= 0.2.1)"
-      ],
-      "VignetteBuilder": "knitr",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.2",
-      "SystemRequirements": "fontconfig, freetype2",
-      "Config/Needs/website": "tidyverse/tidytemplate",
       "Imports": [
+        "base64enc",
         "grid",
         "jsonlite",
         "lifecycle",
         "tools",
         "utils"
       ],
+      "Suggests": [
+        "covr",
+        "farver",
+        "ggplot2",
+        "graphics",
+        "knitr",
+        "ragg",
+        "rmarkdown",
+        "svglite",
+        "testthat (>= 2.1.0)"
+      ],
+      "LinkingTo": [
+        "cpp11 (>= 0.2.1)"
+      ],
+      "VignetteBuilder": "knitr",
       "Config/build/compilation-database": "true",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/usethis/last-upkeep": "2025-04-23",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2",
+      "SystemRequirements": "fontconfig, freetype2",
       "NeedsCompilation": "yes",
-      "Author": "Thomas Lin Pedersen [aut, cre] (<https://orcid.org/0000-0002-5147-4711>), Jeroen Ooms [aut] (<https://orcid.org/0000-0002-4035-0289>), Devon Govett [aut] (Author of font-manager), Posit, PBC [cph, fnd]",
+      "Author": "Thomas Lin Pedersen [aut, cre] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Jeroen Ooms [aut] (ORCID: <https://orcid.org/0000-0002-4035-0289>), Devon Govett [aut] (Author of font-manager), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
       "Repository": "CRAN"
     },

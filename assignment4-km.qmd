@@ -5,7 +5,8 @@ format:
     self_contained: true
 ---
 
-1.
+1.  
+
 ```{r}
 
 install.packages(c("quanteda","quanteda.textmodels","quanteda.textstats","quanteda.textplots"))
@@ -95,12 +96,13 @@ textplot_xray(
 )
 
 ```
-4.
-Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
-5.
-Wordfish is unsupervised while the scaling methods are supervised. Scaling methods require text references.
 
-6.
+4.  Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
+
+5.  Wordfish is unsupervised while the scaling methods are supervised. Scaling methods require text references.
+
+6.  
+
 ```{r}
 ## Scraping 118th Congress - Committee on Foreign Affairs
 
@@ -167,4 +169,3 @@ print(results)
 
 
 ```
-

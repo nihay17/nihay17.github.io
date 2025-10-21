@@ -10,7 +10,7 @@ website:
         text: Home
       - href: files/NihaYadavCV.pdf
         text: CV
-      - text: Data Visualization
+      - text: Data Methods
         menu:
           - href: dataframe.qmd
             text: Dataframe Reviews
@@ -24,6 +24,8 @@ website:
             text: Assignment 4
           - href: assignment5-dv.qmd
             text: Assignment 5
+          - href: assignment6-dv.qmd
+            text: Assignment 6
       - text: Knowledge Mining
         menu:
           - href: assignment1-km.qmd
