@@ -642,25 +642,6 @@
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
-    "Rttf2pt1": {
-      "Package": "Rttf2pt1",
-      "Version": "1.3.12",
-      "Source": "Repository",
-      "Title": "'ttf2pt1' Program",
-      "Author": "Winston Chang, Andrew Weeks, Frank M. Siegert, Mark Heath, Thomas Henlick, Sergey Babkin, Turgut Uyar, Rihardas Hepas, Szalay Tamas, Johan Vromans, Petr Titera, Lei Wang, Chen Xiangyang, Zvezdan Petkovic, Rigel, I. Lee Hetherington",
-      "Maintainer": "Winston Chang <winston@stdout.org>",
-      "Description": "Contains the program 'ttf2pt1', for use with the 'extrafont' package. This product includes software developed by the 'TTF2PT1' Project and its contributors.",
-      "Depends": [
-        "R (>= 2.15)"
-      ],
-      "License": "file LICENSE",
-      "URL": "https://github.com/wch/Rttf2pt1",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.2.3",
-      "NeedsCompilation": "yes",
-      "License_is_FOSS": "yes",
-      "Repository": "CRAN"
-    },
     "S7": {
       "Package": "S7",
       "Version": "0.2.0",
@@ -2075,50 +2056,6 @@
       "Author": "Hadley Wickham [aut, cre], Yihui Xie [aut] (<https://orcid.org/0000-0003-0645-5666>), Michael Lawrence [ctb], Thomas Kluyver [ctb], Jeroen Ooms [ctb], Barret Schloerke [ctb], Adam Ryczkowski [ctb], Hiroaki Yutani [ctb], Michel Lang [ctb], Karolis Koncevičius [ctb], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
       "Repository": "CRAN"
-    },
-    "extrafont": {
-      "Package": "extrafont",
-      "Version": "0.19",
-      "Source": "Repository",
-      "Title": "Tools for Using Fonts",
-      "Author": "Winston Chang <winston@stdout.org>",
-      "Maintainer": "Winston Chang <winston@stdout.org>",
-      "Description": "Tools to using fonts other than the standard PostScript fonts. This package makes it easy to use system TrueType fonts and with PDF or PostScript output files, and with bitmap output files in Windows. extrafont can also be used with fonts packaged specifically to be used with, such as the fontcm package, which has Computer Modern PostScript fonts with math symbols.",
-      "Depends": [
-        "R (>= 2.15)"
-      ],
-      "Imports": [
-        "extrafontdb",
-        "grDevices",
-        "utils",
-        "Rttf2pt1"
-      ],
-      "Suggests": [
-        "fontcm"
-      ],
-      "License": "GPL-2",
-      "URL": "https://github.com/wch/extrafont",
-      "RoxygenNote": "7.1.2",
-      "NeedsCompilation": "no",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
-    },
-    "extrafontdb": {
-      "Package": "extrafontdb",
-      "Version": "1.0",
-      "Source": "Repository",
-      "Title": "Package for holding the database for the extrafont package",
-      "Author": "Winston Chang <winston@stdout.org>",
-      "Maintainer": "Winston Chang <winston@stdout.org>",
-      "Description": "Package for holding the database for the extrafont package",
-      "Depends": [
-        "R (>= 2.14)"
-      ],
-      "License": "GPL-2",
-      "URL": "https://github.com/wch/extrafontdb",
-      "Collate": "'extrafontdb.r'",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
     },
     "fansi": {
       "Package": "fansi",
@@ -5147,15 +5084,17 @@
     },
     "quanteda.textplots": {
       "Package": "quanteda.textplots",
-      "Version": "0.95",
+      "Version": "0.96.1",
       "Source": "Repository",
       "Title": "Plots for the Quantitative Analysis of Textual Data",
       "Authors@R": "c(  person(\"Kenneth\", \"Benoit\", email = \"kbenoit@lse.ac.uk\", role = c(\"cre\", \"aut\", \"cph\"), comment = c(ORCID = \"0000-0002-0797-564X\")),  person(\"Kohei\", \"Watanabe\", email = \"watanabe.kohei@gmail.com\", role = c(\"aut\"), comment = c(ORCID = \"0000-0001-6519-5265\")),  person(\"Haiyan\", \"Wang\", email = \"whyinsa@yahoo.com\", role = \"aut\", comment = c(ORCID = \"0000-0003-4992-4311\")), person(\"Adam\", \"Obeng\", email = \"quanteda@binaryeagle.com\", role = \"aut\", comment = c(ORCID = \"0000-0002-2906-4775\")), person(\"Stefan\", \"Müller\", email = \"mullers@tcd.ie\", role = \"aut\", comment = c(ORCID = \"0000-0002-6315-4125\")), person(\"Akitaka\", \"Matsuo\", email = \"a.matsuo@lse.ac.uk\", role = \"aut\", comment = c(ORCID = \"0000-0002-3323-6330\")), person(\"Ian\", \"Fellows\", email = \"ian@fellstat.com\", role = \"cph\",  comment = \"authored wordcloud C source code (modified)\"), person(\"European Research Council\", role = \"fnd\", comment = \"ERC-2011-StG 283794-QUANTESS\") )",
       "Description": "Plotting functions for visualising textual data.  Extends 'quanteda' and  related packages with plot methods designed specifically for text data, textual statistics,  and models fit to textual data. Plot types include word clouds, lexical dispersion plots,  scaling plots, network visualisations, and word 'keyness' plots.",
       "License": "GPL-3",
+      "Depends": [
+        "R (>= 4.1.0)"
+      ],
       "Imports": [
         "quanteda",
-        "extrafont",
         "ggplot2",
         "ggrepel",
         "grid",
@@ -5183,9 +5122,9 @@
       "Encoding": "UTF-8",
       "BugReports": "https://github.com/quanteda/quanteda.textplots/issues",
       "Language": "en-GB",
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "NeedsCompilation": "yes",
-      "Author": "Kenneth Benoit [cre, aut, cph] (<https://orcid.org/0000-0002-0797-564X>), Kohei Watanabe [aut] (<https://orcid.org/0000-0001-6519-5265>), Haiyan Wang [aut] (<https://orcid.org/0000-0003-4992-4311>), Adam Obeng [aut] (<https://orcid.org/0000-0002-2906-4775>), Stefan Müller [aut] (<https://orcid.org/0000-0002-6315-4125>), Akitaka Matsuo [aut] (<https://orcid.org/0000-0002-3323-6330>), Ian Fellows [cph] (authored wordcloud C source code (modified)), European Research Council [fnd] (ERC-2011-StG 283794-QUANTESS)",
+      "Author": "Kenneth Benoit [cre, aut, cph] (ORCID: <https://orcid.org/0000-0002-0797-564X>), Kohei Watanabe [aut] (ORCID: <https://orcid.org/0000-0001-6519-5265>), Haiyan Wang [aut] (ORCID: <https://orcid.org/0000-0003-4992-4311>), Adam Obeng [aut] (ORCID: <https://orcid.org/0000-0002-2906-4775>), Stefan Müller [aut] (ORCID: <https://orcid.org/0000-0002-6315-4125>), Akitaka Matsuo [aut] (ORCID: <https://orcid.org/0000-0002-3323-6330>), Ian Fellows [cph] (authored wordcloud C source code (modified)), European Research Council [fnd] (ERC-2011-StG 283794-QUANTESS)",
       "Maintainer": "Kenneth Benoit <kbenoit@lse.ac.uk>",
       "Repository": "CRAN"
     },

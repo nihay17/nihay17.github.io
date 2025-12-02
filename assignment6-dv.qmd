@@ -1,5 +1,5 @@
 ---
-title: "assignment6-dv"
+title: "Assignment - 6"
 format: html
 ---
 
@@ -256,6 +256,7 @@ textplot_scale1d(ca, margin = "documents",
                  groups = docvars(data_corpus_irishbudget2010, "party"))
 
 ```
+
 3.The similarities that each president shares based on their inaugural addresses can be analyzed using various text analysis techniques such as Latent Semantic Analysis (LSA), word clouds, and keyness analysis.
 
-4. Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
+4.  Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.

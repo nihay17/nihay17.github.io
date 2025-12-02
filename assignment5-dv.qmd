@@ -1,5 +1,5 @@
 ---
-title: "assignment5-dv"
+title: "Assignment - 5 "
 format: html
 ---
 
@@ -82,4 +82,5 @@ print(results)
 
 
 ```
+
 The above code can be modified to download all files by changing the 1:10 to 1:length(pdf_govfiles_url). Because of this the scraped data can be useable but since it updates frequently it can be improved by using an API from the government website. I had to stop downloads at 10 because it ook up alot of storage and time. The code can be improved by adding a progress bar to show the progress of the downloads. Additionally, error handling can be added to retry failed downloads or log them for later review.

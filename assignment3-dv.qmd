@@ -5,7 +5,6 @@ format: html
 
 Assignment 3 - Mapping Census Data
 
-
 ```{r}
 library(tidycensus)
 library(tigris)
@@ -54,4 +53,5 @@ top10_pop <- pop_tx %>%
 print(top10_pop)
 
 ```
+
 The map shows the median income of counties in Texas, with darker colors indicating higher income levels. The table lists the top 10 most populous counties in Texas based on the 2023 ACS data.

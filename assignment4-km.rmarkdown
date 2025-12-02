@@ -1,0 +1,184 @@
+---
+title: "Assignment 4-km"
+format:
+  html:
+    self_contained: true
+---
+
+
+
+
+1.  
+
+
+
+
+```{r}
+
+install.packages(c("quanteda","quanteda.textmodels","quanteda.textstats","quanteda.textplots"))
+
+library(quanteda)
+library(quanteda.textmodels)
+library(quanteda.textplots)
+library(readr)
+library(ggplot2)
+# Twitter data about President Biden and Xi summit in Novemeber 2021
+# Do some background search/study on the event
+# 
+summit <- read_csv("https://raw.githubusercontent.com/datageneration/datamethods/master/textanalytics/summit_11162021.csv")
+head(summit)
+
+sum_twt = summit$text
+toks = tokens(sum_twt)
+sumtwtdfm <- dfm(toks)
+
+# Latent Semantic Analysis
+sum_lsa <- textmodel_lsa(sumtwtdfm)
+summary(sum_lsa)
+
+tweet_dfm <- tokens(sum_twt, remove_punct = TRUE) %>%
+  dfm()
+head(tweet_dfm)
+tag_dfm <- dfm_select(tweet_dfm, pattern = "#*")
+toptag <- names(topfeatures(tag_dfm, 50))
+head(toptag, 10)
+library("quanteda.textplots")
+
+# Network plot: tags
+tag_fcm <- fcm(tag_dfm)
+head(tag_fcm)
+topgat_fcm <- fcm_select(tag_fcm, pattern = toptag)
+textplot_network(topgat_fcm, min_freq = 50, edge_alpha = 0.8, edge_size = 5)
+
+# Network plot: Users
+user_dfm <- dfm_select(tweet_dfm, pattern = "@*")
+topuser <- names(topfeatures(user_dfm, 50))
+head(topuser, 20)
+user_fcm <- fcm(user_dfm)
+head(user_fcm, 20)
+user_fcm <- fcm_select(user_fcm, pattern = topuser)
+textplot_network(user_fcm, min_freq = 20, edge_color = "firebrick", edge_alpha = 0.8, edge_size = 5)
+
+
+# Wordcloud
+# based on US presidential inaugural address texts, and metadata (for the corpus), from 1789 to present.
+dfm_inaug <- corpus_subset(data_corpus_inaugural, Year <= 1826) %>% 
+  tokens(remove_punct = TRUE) %>% 
+  tokens_remove(stopwords("english")) %>% 
+  dfm() %>% 
+  dfm_trim(min_termfreq = 10, verbose = FALSE)
+
+set.seed(100)
+textplot_wordcloud(dfm_inaug)
+
+corpus_subset(data_corpus_inaugural, 
+              President %in% c("Biden","Trump", "Obama", "Bush")) %>%
+  tokens(remove_punct = TRUE) %>%
+  tokens_remove(stopwords("english")) %>%
+  dfm() %>%
+  dfm_group(groups = President) %>%
+  dfm_trim(min_termfreq = 5, verbose = FALSE) %>%
+  textplot_wordcloud(comparison = TRUE)
+
+
+textplot_wordcloud(dfm_inaug, min_count = 10,
+                   color = c('red', 'pink', 'green', 'purple', 'orange', 'blue'))
+
+
+# Locate keywords-in-context
+data_corpus_inaugural_subset <- 
+  corpus_subset(data_corpus_inaugural, Year > 1949)
+kwic(tokens(data_corpus_inaugural_subset), pattern = "american") %>%
+  textplot_xray()
+kwic(tokens(data_corpus_inaugural_subset), pattern = "trade") %>%
+  textplot_xray()
+
+
+tokens_inaugural <- tokens(data_corpus_inaugural_subset)
+textplot_xray(
+  kwic(tokens_inaugural, pattern = "american"),
+  kwic(tokens_inaugural, pattern = "people"),
+  kwic(tokens_inaugural, pattern = "trade")
+)
+
+```
+
+
+
+
+4.  Wordfish is a quantitative text analysis method used in political science and social sciences to estimate the ideological positions of texts or speakers based on word frequencies.
+
+5.  Wordfish is unsupervised while the scaling methods are supervised. Scaling methods require text references.
+
+6.  
+
+
+
+
+```{r}
+## Scraping 118th Congress - Committee on Foreign Affairs
+
+# Install required packages if not already installed
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(purrr, magrittr, rjson, jsonlite, data.table, readr, dplyr)
+
+# Set working directory to where your CSV file is stored
+setwd("C:/Users/Niha/OneDrive/Documents/Grad School/nihay17.github.io/files")
+
+# Load the CSV file
+govfiles <- read.csv("govinfo-search-results-2025-03-13T22_07_34.csv", skip = 2, stringsAsFactors = FALSE)
+
+# Display column names to check correct field names
+print(colnames(govfiles))
+
+# Check values in the likely column (Congressional Hearings)
+head(govfiles$Congressional.Hearings, 10)
+
+# Filter for 118th Congress - Committee on Foreign Affairs
+govfiles_filtered <- govfiles %>%
+  filter(grepl("118th Congress", Congressional.Hearings, ignore.case = TRUE) & 
+         grepl("Committee on Foreign Affairs", Congressional.Hearings, ignore.case = TRUE))
+
+# Check the number of rows after filtering
+print(nrow(govfiles_filtered))  # Should be greater than 0 if successful
+head(govfiles_filtered)  # Preview filtered data
+
+# Extract necessary fields
+govfiles_filtered$id <- govfiles_filtered$CHRG.118hhrg52236  # Adjust column if needed
+pdf_govfiles_url <- govfiles_filtered$`https...www.govinfo.gov.content.pkg.CHRG.118hhrg52236.pdf.CHRG.118hhrg52236.pdf`
+pdf_govfiles_id <- govfiles_filtered$id
+
+# Create a directory to save the PDFs if it doesn't exist
+save_dir <- "C:/Users/Niha/OneDrive/Documents/Grad School/nihay17.github.io/files/gov_pdfs/"
+if (!dir.exists(save_dir)) dir.create(save_dir)
+
+# Function to download PDFs
+download_govfiles_pdf <- function(url, id) {
+  tryCatch({
+    destfile <- paste0(save_dir, "govfiles_", id, ".pdf")
+    download.file(url, destfile = destfile, mode = "wb")  # Binary files
+    Sys.sleep(runif(1, 1, 3))  # Random sleep to prevent request blocking
+    return(paste("Successfully downloaded:", url))
+  },
+  error = function(e) {
+    return(paste("Failed to download:", url))
+  })
+}
+
+# Download first five files for testing
+start.time <- Sys.time()
+message("Starting downloads")
+results <- 1:5 %>% 
+  purrr::map_chr(~ download_govfiles_pdf(pdf_govfiles_url[.], pdf_govfiles_id[.]))
+message("Finished downloads")
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+print(time.taken)
+
+# Print results
+print(results)
+
+
+
+```
+

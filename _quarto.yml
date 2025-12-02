@@ -10,7 +10,7 @@ website:
         text: Home
       - href: files/NihaYadavCV.pdf
         text: CV
-      - text: Data Methods
+      - text: Data Collection Methods
         menu:
           - href: dataframe.qmd
             text: Dataframe Reviews
