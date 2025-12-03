@@ -1,1 +1,4 @@
-/* css styles */
+.navbar-nav .dropdown-menu {
+  max-height: none;
+  overflow-y: visible;
+}
